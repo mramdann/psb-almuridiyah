@@ -43,7 +43,7 @@
                 <div class="d-flex align-items-center">
                     <div class="site-logo">
                         <a href="index-2.html" class="d-block">
-                            <img src="assets/front/images/xlogo.jpg.pagespeed.ic.fRho2_GusO.jpg" alt="Image" class="img-fluid">
+                            <img style="width: 100x; height: 50px;" src="assets/front/images/logo.png" alt="Image" class="img-fluid">
                         </a>
                     </div>
                     <div class="mr-auto">

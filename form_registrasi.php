@@ -16,8 +16,8 @@ if (isset($_POST['daftar'])) {
     $hp = $_POST['hp'];
     $agama = $_POST['agama'];
     $alamat = $_POST['alamat'];
-    $id_ayah = $_POST['id_ayah'];
-    $id_ibu = $_POST['id_ibu'];
+    // $id_ayah = $_POST['id_ayah'];
+    // $id_ibu = $_POST['id_ibu'];
 
 
     // INPUT DATA JALUR PENDIDIKAN
@@ -46,11 +46,10 @@ if (isset($_POST['daftar'])) {
 
     // Ambil Data Gambar yang Dikirim dari Form
 
-    $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, jenjang, asal_sekolah, jalur_pendaftaran, id_ayah, id_ibu) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$foto','$jenis_pendaftaran','$jenjang','$asal_sekolah','$jalur_pendaftaran','$id_ayah','$id_ibu')");
+    $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, jenjang, asal_sekolah, jalur_pendaftaran) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$foto','$jenis_pendaftaran','$jenjang','$asal_sekolah','$jalur_pendaftaran')");
 
-    // $query2 = $koneksi->query("INSERT INTO tbl_ayah_kandung (nama_ayah, thn_lahir, pendidikan, pekerjaan, waktu_keluar, status_ijin) VALUES ('$nam_ayah','$thn_lahir','$pendidikan','$pekerjaan')");
+    //                                                                                                                                                                    
 
-    // $query3 = $koneksi->query("INSERT INTO tbl_ibu_kandung (nama_ibu, thn_lahir, pendidikan, pekerjaan, waktu_keluar, status_ijin) VALUES ('$nam_ibu','$thn_lahir_ibu','$pendidikan_ibu','$pekerjaan_ibu')");
 
 
     echo "<script>alert('data berhasil di tambahkan ! ...')</script>";
@@ -241,7 +240,7 @@ if (isset($_POST['daftar'])) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="nama_ayah">Nama Ayah Kandung</label>
-                            <input type="text" name="nama_ayah" id="nama_ayah" class="form-control form-control-lg" placeholder="Nama Asli Ayah Kandung. Contoh : 1995">
+                            <input type="text" name="nama_ayah" id="nama_ayah" class="form-control form-control-lg" placeholder="Nama Asli Ayah Kandung">
                         </div>
 
                         <div class="col-md-6 form-group">
