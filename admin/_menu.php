@@ -46,19 +46,34 @@
         <aside class="main-sidebar">
             <section class="sidebar">
                 <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <div class="pull-left image"><br>
+                        <!-- <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
+                        <i class="fa fa-graduation-cap fa-2x img-circle text-success"></i>
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <p>TAHUN AJARAN AKTIF</p>
+                        <p><a href="#"><i class="fa fa-circle text-success margin-r-5"></i> 2021</a></p>
                     </div>
                 </div>
 
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li><a href="."><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>
-                    <li><a href="."><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>Master Data</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="user.php"><i class="fa fa-circle-o"></i> Data User</a></li>
+                            <li><a href="tahun_ajaran.php"><i class="fa fa-circle-o"></i> Data Tahun Ajaran</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="."><i class="fa fa-edit"></i> <span>Data Peserta Didik</span></a></li>
+                    <li><a href="."><i class="fa fa-file-text-o"></i> <span>Laporan</span></a></li>
                 </ul>
             </section>
 
