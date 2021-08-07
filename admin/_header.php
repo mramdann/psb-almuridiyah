@@ -18,6 +18,7 @@ if (empty($_SESSION['admin']['username'])) {
     <title>SMA Al-Muridiyah | Dashboard</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="../assets/dist/css/AdminLTE.min.css">
@@ -27,5 +28,16 @@ if (empty($_SESSION['admin']['username'])) {
     <link rel="stylesheet" href="../assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="../assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+    <!-- <link rel="stylesheet" href="../assets/bower_components/bootstrap-4.1.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/bower_components/bootstrap-4.1.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/bower_components/bootstrap-4.1.3-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="../assets/bower_components/bootstrap-4.1.3-dist/css/bootstrap-grid-min.css"> -->
+
+
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
 </head>

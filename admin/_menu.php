@@ -68,11 +68,11 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="user.php"><i class="fa fa-circle-o"></i> Data User</a></li>
+                            <li><a href="dataUser.php?aksi=list"><i class="fa fa-circle-o"></i> Data User</a></li>
                             <li><a href="tahun_ajaran.php"><i class="fa fa-circle-o"></i> Data Tahun Ajaran</a></li>
                         </ul>
                     </li>
-                    <li><a href="."><i class="fa fa-edit"></i> <span>Data Peserta Didik</span></a></li>
+                    <li><a href="data_pesertaDidik.php?aksi=list"><i class="fa fa-edit"></i> <span>Data Peserta Didik</span></a></li>
                     <li><a href="."><i class="fa fa-file-text-o"></i> <span>Laporan</span></a></li>
                 </ul>
             </section>

@@ -16,10 +16,8 @@ if (isset($_POST['daftar'])) {
     $hp = $_POST['hp'];
     $agama = $_POST['agama'];
     $alamat = $_POST['alamat'];
-    // $id_ayah = $_POST['id_ayah'];
-    // $id_ibu = $_POST['id_ibu'];
-
-
+    $status = 'Menunggu...!';
+    $icon = 'info';
     // INPUT DATA JALUR PENDIDIKAN
 
     $jenis_pendaftaran = $_POST['jenis_pendaftaran'];
@@ -28,11 +26,10 @@ if (isset($_POST['daftar'])) {
     $jalur_pendaftaran = $_POST['jalur_pendaftaran'];
 
     // INPUT DATA AYAH
-
     $nama_ayah = $_POST['nama_ayah'];
-    $thn_lahir = $_POST['thn_lahir'];
-    $pendidikan = $_POST['pendidikan'];
-    $pekerjaan = $_POST['pekerjaan'];
+    $thn_lahir_ayah = $_POST['thn_lahir_ayah'];
+    $pendidikan_ayah = $_POST['pendidikan_ayah'];
+    $pekerjaan_ayah = $_POST['pekerjaan_ayah'];
 
 
     // INPUT DATA IBU
@@ -46,11 +43,13 @@ if (isset($_POST['daftar'])) {
 
     // Ambil Data Gambar yang Dikirim dari Form
 
-    $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, jenjang, asal_sekolah, jalur_pendaftaran) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$foto','$jenis_pendaftaran','$jenjang','$asal_sekolah','$jalur_pendaftaran')");
+    $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, jenjang, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$foto','$jenis_pendaftaran','$jenjang','$asal_sekolah','$jalur_pendaftaran','$status','$icon')");
 
-    //                                                                                                                                                                    
+    $id = $koneksi->insert_id;
 
+    $queryAyah = $koneksi->query("INSERT INTO tbl_ayah (nama_ayah, pendidikan_a, pekerjaan_a, thn_lahir_a, id_peserta) VALUES (' $nama_ayah',' $pendidikan_ayah',' $pekerjaan_ayah','$thn_lahir_ayah','$id')");
 
+    $queryIbu = $koneksi->query("INSERT INTO tbl_ibu (nama_ibu, pendidikan_i, pekerjaan_i, thn_lahir_i, id_peserta) VALUES (' $nama_ibu',' $pendidikan_ibu',' $pekerjaan_ibu','$thn_lahir_ibu','$id')");
 
     echo "<script>alert('data berhasil di tambahkan ! ...')</script>";
     echo "<script>location='form_registrasi.php'</script>";
@@ -64,7 +63,7 @@ if (isset($_POST['daftar'])) {
     <div class="container">
         <div class="row align-items-end">
             <div class="col-lg-7">
-                <h2 class="mb-0">Registrasi</h2>
+                <h2 class="mb-0">Form Pendaftaran</h2>
 
             </div>
         </div>
@@ -146,7 +145,7 @@ if (isset($_POST['daftar'])) {
                         <div class="col-md-6 form-group">
                             <label for="agama">Agama</label>
                             <select class="form-control" name="agama" id="agama">
-                                <option>PILIH :</option>
+                                <option selected></option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen">Kristen</option>
                                 <option value="Budha">Budha</option>
@@ -167,8 +166,8 @@ if (isset($_POST['daftar'])) {
                     <!--================= END DATA PRIBADI ================================-->
 
 
-                    <!--================= END DATA PEDIDIKAN ================================-->
-                    <!--================= END DATA PEDIDIKAN ================================-->
+                    <!--=================  DATA PEDIDIKAN ================================-->
+                    <!--=================  DATA PEDIDIKAN ================================-->
 
                     <div class="row mb-5">
                         <div class="col-lg-3">
@@ -179,7 +178,7 @@ if (isset($_POST['daftar'])) {
                         <div class="col-md-6 form-group">
                             <label for="jenis_pendaftaran">Jenis Pendaftaran</label>
                             <select class="form-control" name="jenis_pendaftaran" id="jenis_pendaftaran">
-                                <option>PILIH :</option>
+                                <option selected></option>
                                 <?php
                                 $sql = $koneksi->query("SELECT * FROM tbl_regist");
                                 while ($data = $sql->fetch_assoc()) {
@@ -194,7 +193,7 @@ if (isset($_POST['daftar'])) {
                         <div class="col-md-6 form-group">
                             <label for="jenjang">Pilihan Jenjang</label>
                             <select class="form-control" name="jenjang" id="jenjang">
-                                <option>PILIH :</option>
+                                <option selected></option>
                                 <?php
                                 $sql = $koneksi->query("SELECT * FROM tbl_regist");
                                 while ($data = $sql->fetch_assoc()) {
@@ -214,7 +213,7 @@ if (isset($_POST['daftar'])) {
                         <div class="col-md-6 form-group">
                             <label for="jalur_pendaftaran">Jalur Pendaftaran</label>
                             <select class="form-control" name="jalur_pendaftaran" id="jalur_pendaftaran">
-                                <option>PILIH :</option>
+                                <option selected></option>
                                 <?php
                                 $sql = $koneksi->query("SELECT * FROM tbl_regist");
                                 while ($data = $sql->fetch_assoc()) {
@@ -239,19 +238,19 @@ if (isset($_POST['daftar'])) {
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label for="nama_ayah">Nama Ayah Kandung</label>
-                            <input type="text" name="nama_ayah" id="nama_ayah" class="form-control form-control-lg" placeholder="Nama Asli Ayah Kandung">
+                            <label for="nama_ibu">Nama ayah Kandung</label>
+                            <input type="text" name="nama_ayah" id="nama_ayah" class="form-control form-control-lg" placeholder="Nama Asli ayah Kandung">
                         </div>
 
                         <div class="col-md-6 form-group">
-                            <label for="thn_lahir">Tahun Lahir</label>
-                            <input type="text" name="thn_lahir" id="thn_lahir" class="form-control form-control-lg" placeholder="Tahun Lahir Ayah Kandung. Contoh : 1995">
+                            <label for="thn_lahir_ayah">Tahun Lahir</label>
+                            <input type="text" name="thn_lahir_ayah" id="thn_lahir_ayah" class="form-control form-control-lg" placeholder="Tahun Lahir ayah Kandung. Contoh : 1995">
                         </div>
 
                         <div class="col-md-6 form-group">
-                            <label for="pendidikan">Pendidikan</label>
-                            <select class="form-control" name="pendidikan" id="pendidikan">
-                                <option>PILIH :</option>
+                            <label for="pendidikan_ayah">Pendidikan</label>
+                            <select class="form-control" name="pendidikan_ayah" id="pendidikan_ayah">
+                                <option selected></option>
                                 <?php
                                 $sql = $koneksi->query("SELECT * FROM tbl_pendidikan");
                                 while ($data = $sql->fetch_assoc()) {
@@ -264,9 +263,9 @@ if (isset($_POST['daftar'])) {
                         </div>
 
                         <div class="col-md-6 form-group">
-                            <label for="pekerjaan">Pekerjaan</label>
-                            <select class="form-control" name="pekerjaan" id="pekerjaan">
-                                <option>PILIH :</option>
+                            <label for="pekerjaan_ayah">Pekerjaan</label>
+                            <select class="form-control" name="pekerjaan_ayah" id="pekerjaan_ayah">
+                                <option selected></option>
                                 <?php
                                 $sql = $koneksi->query("SELECT * FROM tbl_pekerjaan");
                                 while ($data = $sql->fetch_assoc()) {
@@ -304,7 +303,7 @@ if (isset($_POST['daftar'])) {
                         <div class="col-md-6 form-group">
                             <label for="pendidikan_ibu">Pendidikan</label>
                             <select class="form-control" name="pendidikan_ibu" id="pendidikan_ibu">
-                                <option>PILIH :</option>
+                                <option selected></option>
                                 <?php
                                 $sql = $koneksi->query("SELECT * FROM tbl_pendidikan");
                                 while ($data = $sql->fetch_assoc()) {
@@ -319,7 +318,7 @@ if (isset($_POST['daftar'])) {
                         <div class="col-md-6 form-group">
                             <label for="pekerjaan_ibu">Pekerjaan</label>
                             <select class="form-control" name="pekerjaan_ibu" id="pekerjaan_ibu">
-                                <option>PILIH :</option>
+                                <option selected></option>
                                 <?php
                                 $sql = $koneksi->query("SELECT * FROM tbl_pekerjaan");
                                 while ($data = $sql->fetch_assoc()) {

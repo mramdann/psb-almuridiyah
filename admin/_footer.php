@@ -17,6 +17,7 @@
 </script>
 
 <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../assets/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="../assets/bower_components/raphael/raphael.min.js"></script>
 <script src="../assets/bower_components/morris.js/morris.min.js"></script>
 <script src="../assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
@@ -32,6 +33,12 @@
 <script src="../assets/dist/js/adminlte.min.js"></script>
 <script src="../assets/dist/js/pages/dashboard.js"></script>
 <script src="../assets/dist/js/demo.js"></script>
+
+
+<!-- <script src="../assets/bower_components/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+<script src="../assets/bower_components/bootstrap-4.1.3-dist/js/bootstrap.js"></script>
+<script src="../assets/bower_components/bootstrap-4.1.3-dist/js/bootstrap-bundle.js"></script>
+<script src="../assets/bower_components/bootstrap-4.1.3-dist/js/bootstrap-bundle.min.js"></script> -->
 </body>
 
 </html>

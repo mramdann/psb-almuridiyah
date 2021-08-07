@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-lg-3 text-right">
                         <a href="http://localhost/psb-almuridiyah/admin/" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-                        <a href="form_registrasi.php" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Register</a>
+                        <a href="form_registrasi.php" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Daftar</a>
                     </div>
                 </div>
             </div>
