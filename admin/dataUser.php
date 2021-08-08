@@ -54,11 +54,11 @@ include "../koneksi.php";
                                         <td><?= $data['username'] ?></td>
                                         <td><?= $data['nama_user'] ?></td>
                                         <td>
-                                            <a href="master_aksi.php?aksi=hapus&id=<?= $data['id_user'] ?>">
+                                            <a href="dataUser.php?aksi=hapusUser&id=<?= $data['id_user'] ?>">
                                                 <span></span>
                                                 <i class="material-icons">delete_forever</i>
                                             </a>
-                                            <a href="master_user_edit.php?id=<?= $data['id_user'] ?>">
+                                            <a href="dataUser.php?aksi=editUser&id=<?= $data['id_user'] ?>">
                                                 <i class="material-icons">edit</i>
                                             </a>
                                         </td>
@@ -71,6 +71,23 @@ include "../koneksi.php";
                 </div>
             </div>
         </section>
+
+    <?php } else if ($view == 'hapusUser') { ?>
+        <!-- # syntax delete data loker -->
+        <?php
+        $id = $_GET['id'];
+
+        $sql = $koneksi->query("DELETE FROM tbl_user WHERE id_user='$id'");
+
+        if ($sql == '1') {
+            echo "<script>alert('Data berhasil dihapus !')</script>";
+            echo "<script>location='dataUser.php?aksi=list'</script>";
+        } else {
+            echo "<script>location='dataUser.php?aksi=list'</script>";
+        }
+
+        ?>
+
 
 
     <?php } else if ($view == 'tambah') {
@@ -94,51 +111,125 @@ include "../koneksi.php";
 
 
         <section class="content">
-            <div class="card" style=" border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 7px; box-shadow: -3px 4px 2px rgba(0, 0, 0, 0.3); padding-left: 15px; padding-right: 15px;">
+            <div style="width:80%; height:500px; margin:auto; position:relative;">
+                <div class="card" style=" width:450px; position:absolute; top:100px; left:50%; transform: translateX(-50%); border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 7px; box-shadow: -3px 4px 2px rgba(0, 0, 0, 0.3); padding-left: 15px; padding-right: 15px;">
 
-                <div class="card-header mb-5" style="margin-bottom: 40px;">
-                    <h3>Form Tambah User</h3>
+                    <div class="card-header mb-5" style="margin-bottom: 40px;">
+                        <h3>Form Tambah User</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="POST">
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <label for="username">Username </label>
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="Input username" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nama_user">Nama Lengkap </label>
+                                    <input type="text" class="form-control" name="nama_user" id="nama_user" placeholder="Input nama lengkap" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass">Password </label>
+                                    <input type="password" class="form-control" name="pass" id="pass" placeholder="Input password" required>
+                                </div>
+                            </fieldset>
+                            <div class="form-actions text-center">
+                                <button class="btn btn-primary" type="submit" name="simpan">Simpan</button></a>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
 
-                <div class="card-body">
-                    <form method="POST">
-                        <fieldset>
-
-                            <div class="form-group">
-                                <label for="username">Username </label>
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Input username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="nama_user">Nama Lengkap </label>
-                                <input type="text" class="form-control" name="nama_user" id="nama_user" placeholder="Input nama lengkap" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="pass">Password </label>
-                                <input type="password" class="form-control" name="pass" id="pass" placeholder="Input password" required>
-                            </div>
-                        </fieldset>
-                        <div class="form-actions text-center">
-                            <button class="btn btn-primary" type="submit" name="simpan">Simpan</button></a>
-                        </div>
-
-                    </form>
-                </div>
             </div>
+
         </section>
+
+
+    <?php } else if ($view == 'editUser') {
+
+
+        // Syntax untuk update/edit data ke tbl_loker jika tombol simpan di tekan
+        $id = $_GET['id'];
+        if (isset($_POST['update'])) {
+            $username = $_POST['username'];
+            $pass = $_POST['pass'];
+            $nama_user = $_POST['nama_user'];
+
+            $query = $koneksi->query("UPDATE tbl_user SET username='$username',password='$pass',nama_user='$nama_user' where id_user='$id'");
+            print_r($query);
+            if ($query) {
+                echo "<script>alert('Data user berhasil diubah !')</script>";
+            } else {
+                echo "<script>alert('Data user gagal diubah !')</script>";
+            }
+            echo "<script>location='dataUser.php?aksi=editUser&id=$id'</script>";
+            // echo "<script>alert('Login Berhasil ! ...')</script>";
+            // echo "<script>location='master_user.php'</script>";
+        }
+    ?>
+
+
+
+
+        <section class="content">
+            <div style="width:80%; height:500px; margin:auto; position:relative;">
+                <div class="card" style=" width:450px; position:absolute; top:100px; left:50%; transform: translateX(-50%); border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 7px; box-shadow: -3px 4px 2px rgba(0, 0, 0, 0.3); padding-left: 15px; padding-right: 15px;">
+
+                    <div class="card-header mb-5" style="margin-bottom: 40px;">
+                        <h3>Form Tambah User</h3>
+                        <a href="dataUser.php?aksi=list"> <button type="button" class="btn btn-primary">
+                                Kembali
+                            </button></a>
+                    </div>
+
+                    <div class="card-body">
+
+                        <?php
+                        $id = $_GET['id'];
+                        $sql = $koneksi->query("SELECT * FROM tbl_user WHERE id_user='$id'");
+                        while ($data = $sql->fetch_assoc()) {
+                            # code...
+                        ?>
+
+                            <form method="POST">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="nama_user">Nama Lengkap </label>
+                                        <input type="text" class="form-control" name="nama_user" id="nama_user" value=" <?= $data['nama_user'] ?>" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="username">Username </label>
+                                        <input type="text" class="form-control" name="username" id="username" value=" <?= $data['username'] ?>" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pass">Password </label>
+                                        <input type="password" class="form-control" name="pass" id="pass" placeholder="Input password" required>
+                                    </div>
+                                </fieldset>
+                                <div class="form-actions text-center">
+                                    <button class="btn btn-primary" type="submit" name="update">update</button></a>
+                                </div>
+
+                            </form>
+                        <?php
+                        } ?>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
 
     <?php } ?>
 
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 <?php
