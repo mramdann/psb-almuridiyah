@@ -18,6 +18,8 @@ if (isset($_POST['daftar'])) {
     $alamat = $_POST['alamat'];
     $status = 'Menunggu...!';
     $icon = 'info';
+
+
     // INPUT DATA JALUR PENDIDIKAN
 
     $jenis_pendaftaran = $_POST['jenis_pendaftaran'];
@@ -41,21 +43,54 @@ if (isset($_POST['daftar'])) {
 
 
 
+    // UPLOAD GAMBAR
+
+    $tempdir = "assets/img/peserta/";
+    if (!file_exists($tempdir))
+        mkdir($tempdir, 0755);
+    //gambar akan di simpan di folder gambar
+    $target_path = $tempdir . basename($_FILES['gambar']['name']);
+
+    //nama gambar
+    $nama_gambar = $_FILES['gambar']['name'];
+    //ukuran gambar
+    $ukuran_gambar = $_FILES['gambar']['size'];
+
+    $fileinfo = @getimagesize($_FILES["gambar"]["tmp_name"]);
+    //lebar gambar
+    $width = $fileinfo[0];
+    //tinggi gambar
+    $height = $fileinfo[1];
+    if ($ukuran_gambar > 81920) {
+        echo 'Ukuran gambar melebihi 80kb';
+    } else if ($width > "2000" || $height > "2000") {
+        echo 'Ukuran gambar harus 480x640';
+    } else {
+        if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_path)) {
+
+            $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, jenjang, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$nama_gambar','$jenis_pendaftaran','$jenjang','$asal_sekolah','$jalur_pendaftaran','$status','$icon')");
+
+            $id = $koneksi->insert_id;
+
+            $queryAyah = $koneksi->query("INSERT INTO tbl_ayah (nama_ayah, pendidikan_a, pekerjaan_a, thn_lahir_a, id_peserta) VALUES (' $nama_ayah',' $pendidikan_ayah',' $pekerjaan_ayah','$thn_lahir_ayah','$id')");
+
+            $queryIbu = $koneksi->query("INSERT INTO tbl_ibu (nama_ibu, pendidikan_i, pekerjaan_i, thn_lahir_i, id_peserta) VALUES (' $nama_ibu',' $pendidikan_ibu',' $pekerjaan_ibu','$thn_lahir_ibu','$id')");
+
+            echo "<script>alert('data berhasil di tambahkan ! ...')</script>";
+            echo "<script>location='form_registrasi.php'</script>";
+        } else {
+            echo 'Simpan data gagal';
+        }
+    }
+
+
+
+
     // Ambil Data Gambar yang Dikirim dari Form
 
-    $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, jenjang, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$foto','$jenis_pendaftaran','$jenjang','$asal_sekolah','$jalur_pendaftaran','$status','$icon')");
 
-    $id = $koneksi->insert_id;
 
-    $queryAyah = $koneksi->query("INSERT INTO tbl_ayah (nama_ayah, pendidikan_a, pekerjaan_a, thn_lahir_a, id_peserta) VALUES (' $nama_ayah',' $pendidikan_ayah',' $pekerjaan_ayah','$thn_lahir_ayah','$id')");
-
-    $queryIbu = $koneksi->query("INSERT INTO tbl_ibu (nama_ibu, pendidikan_i, pekerjaan_i, thn_lahir_i, id_peserta) VALUES (' $nama_ibu',' $pendidikan_ibu',' $pekerjaan_ibu','$thn_lahir_ibu','$id')");
-
-    echo "<script>alert('data berhasil di tambahkan ! ...')</script>";
-    echo "<script>location='form_registrasi.php'</script>";
 }
-
-
 
 ?>
 
@@ -80,7 +115,7 @@ if (isset($_POST['daftar'])) {
             </div>
         </div>
 
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
 
             <div class="card">
                 <div class="card-body">
@@ -103,7 +138,7 @@ if (isset($_POST['daftar'])) {
                         <div class="col-md-6 form-group">
                             <label for="kelamin">Jenis Kelamin</label>
                             <select class="form-control" name="kelamin" id="kelamin">
-                                <option>PILIH :</option>
+                                <option></option>
                                 <option value="Laki-Laki">Laki-Laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
@@ -138,8 +173,8 @@ if (isset($_POST['daftar'])) {
                         </div>
 
                         <div class="col-md-6 form-group">
-                            <label for="foto">Foto</label>
-                            <input type="file" name="foto" id="foto" class="form-control form-control-lg">
+                            <label for="gambar">Foto</label>
+                            <input type="file" name="gambar" id="gambar" class="form-control form-control-lg">
                         </div>
 
                         <div class="col-md-6 form-group">

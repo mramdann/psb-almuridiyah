@@ -122,7 +122,7 @@ include "../koneksi.php";
                     ?>
                         <div class="row no-gutters" style="margin-bottom: 40px;">
                             <div class="col-md-6">
-                                <img style="width: 470px;" src="../assets/img/xblog_large_1.jpg.pagespeed.ic.i8Gx2Hw_Ng.jpg" class="card-img-top" alt="...">
+                                <img style="width: 470px;" src="../assets/img/peserta/<?= $data['foto'] ?>" class="card-img-top" alt="...">
                             </div>
 
                             <div class="col-md-6">
