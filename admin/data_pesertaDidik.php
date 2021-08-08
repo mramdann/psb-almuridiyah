@@ -57,7 +57,7 @@ include "../koneksi.php";
                                         <td><?= $data['asal_sekolah'] ?></td>
                                         <td><?= $data['status_pendaftaran'] ?> <i class="material-icons"><?= $data['icon'] ?></i></td>
                                         <td>
-                                            <a href="master_aksi.php?aksi=hapus&id=<?= $data['id_user'] ?>">
+                                            <a href="data_pesertaDidik.php?aksi=hapus_peserta&id=<?= $data['id_peserta'] ?>">
                                                 <span></span>
                                                 <i class="material-icons">delete_forever</i>
                                             </a>
@@ -75,6 +75,30 @@ include "../koneksi.php";
                 </div>
             </div>
         </section>
+
+    <?php } else if ($view == 'hapus_peserta') { ?>
+        <!-- # syntax delete data loker -->
+        <?php
+        $id = $_GET['id'];
+
+        $sql    = "DELETE FROM tbl_peserta WHERE id_peserta = '$id'";
+        $sql2   = "DELETE FROM tbl_ayah WHERE id_peserta = '$id'";
+        $sql3   = "DELETE FROM tbl_ibu WHERE id_peserta= '$id'";
+
+        $exe    = mysqli_query($koneksi, $sql);
+        $exe2  = mysqli_query($koneksi, $sql2);
+        $exe2  = mysqli_query($koneksi, $sql3);
+
+
+
+        if ($sql) {
+            echo "<script>alert('Data lamaran berhasil di hapus !')</script>";
+        } else {
+            echo "<script>alert('Data lamaran gagal di hapus !')</script>";
+        }
+        echo "<script>location='data_pesertaDidik.php?aksi=list'</script>";
+        ?>
+
 
 
     <?php } else if ($view == 'detailPeserta') { ?>
@@ -141,11 +165,6 @@ include "../koneksi.php";
                                             <td><span> No Hp</span> </td>
                                             <td>: <?= $data['no_hp'] ?></td>
                                         </tr>
-
-                                        <tr>
-                                            <td><span> Asal Sekolah</span> </td>
-                                            <td>: <?= $data['asal_sekolah'] ?></td>
-                                        </tr>
                                         <tr class="bg-primary">
                                             <td> </td>
                                             <td></td>
@@ -155,6 +174,11 @@ include "../koneksi.php";
                                             <td>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td><span> Asal Sekolah</span> </td>
+                                            <td>: <?= $data['asal_sekolah'] ?></td>
+                                        </tr>
+
                                         <tr>
                                             <td><span> Jenis Pendaftaran</span> </td>
                                             <td>: <?= $data['jenis_pendaftaran'] ?></td>
