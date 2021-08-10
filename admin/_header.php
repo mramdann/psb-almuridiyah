@@ -29,10 +29,7 @@ if (empty($_SESSION['admin']['username'])) {
     <link rel="stylesheet" href="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="../assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-    <!-- <link rel="stylesheet" href="../assets/bower_components/bootstrap-4.1.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/bower_components/bootstrap-4.1.3-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/bower_components/bootstrap-4.1.3-dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="../assets/bower_components/bootstrap-4.1.3-dist/css/bootstrap-grid-min.css"> -->
+
 
 
 

@@ -35,10 +35,7 @@
 <script src="../assets/dist/js/demo.js"></script>
 
 
-<!-- <script src="../assets/bower_components/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
-<script src="../assets/bower_components/bootstrap-4.1.3-dist/js/bootstrap.js"></script>
-<script src="../assets/bower_components/bootstrap-4.1.3-dist/js/bootstrap-bundle.js"></script>
-<script src="../assets/bower_components/bootstrap-4.1.3-dist/js/bootstrap-bundle.min.js"></script> -->
+<!--  -->
 </body>
 
 </html>

@@ -24,6 +24,13 @@
         <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
         <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#51be78" />
     </svg></div>
+
+<script src="assets/front/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+<script src="assets/front/bootstrap-4.1.3-dist/js/bootstrap.js"></script>
+<script src="assets/front/bootstrap-4.1.3-dist/js/bootstrap-bundle.js"></script>
+<script src="assets/front/bootstrap-4.1.3-dist/js/bootstrap-bundle.min.js"></script>
+
+
 <script src="assets/front/js/jquery-3.3.1.min.js"></script>
 <script src="assets/front/js/jquery-migrate-3.0.1.min.js%2bjquery-ui.js%2bpopper.min.js.pagespeed.jc.XaLWx32sRV.js"></script>
 <script>

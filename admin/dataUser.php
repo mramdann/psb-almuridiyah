@@ -116,6 +116,9 @@ include "../koneksi.php";
 
                     <div class="card-header mb-5" style="margin-bottom: 40px;">
                         <h3>Form Tambah User</h3>
+                        <a href="dataUser.php?aksi=list"> <button type="button" class="btn btn-primary">
+                                Kembali
+                            </button></a>
                     </div>
 
                     <div class="card-body">

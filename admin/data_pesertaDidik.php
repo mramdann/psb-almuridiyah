@@ -273,7 +273,7 @@ include "../koneksi.php";
                     <!-- # syntax udapte data loker -->
                     <?php
                     $id = $_GET['id'];
-                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran='Diterima', icon='done' WHERE id_peserta = '$id' ");
+                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran=' Diterima', icon='done' color='text-success' WHERE id_peserta = '$id' ");
                     if ($query_udapte) {
                         echo "<script>alert('Data lamaran berhasil diterima !')</script>";
                     } else {
@@ -287,7 +287,7 @@ include "../koneksi.php";
                     <!-- # syntax udapte data loker -->
                     <?php
                     $id = $_GET['id'];
-                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran='Ditolak', icon='close' WHERE id_peserta = '$id' ");
+                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran='Ditolak', icon='close' color='text-danger' WHERE id_peserta = '$id' ");
                     if ($query_udapte) {
                         echo "<script>alert('Data lamaran berhasil ditolak !')</script>";
                     } else {

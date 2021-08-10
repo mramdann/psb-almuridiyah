@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="assets/front/fonts%2c_icomoon%2c_style.css%2bcss%2c_bootstrap.min.css%2bcss%2c_jquery-ui.css%2bcss%2c_owl.carousel.min.css%2bcss%2c_owl.theme.default.min.css%2bcss%2c_owl.theme.default.min.css%2bcss%2c_jquery.fancyb" />
     <link href="assets/front/css/A.jquery.mb.YTPlayer.min.css.pagespeed.cf.N2G3N4O1x5.css" media="all" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="assets/front/css/A.style.css.pagespeed.cf.SghS18xLJ1.css">
+
+    <link rel="stylesheet" href="assets/front/bootstrap-4.1.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/front/bootstrap-4.1.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/front/bootstrap-4.1.3-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="assets/front/bootstrap-4.1.3-dist/css/bootstrap-grid-min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -54,7 +62,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="form_registrasi.php" class="nav-link text-left">About</a>
+                                    <a href="statusPendaftaranPeserta.php?aksi=list" class="nav-link text-left">Status Pendaftaran</a>
                                 </li>
 
                                 <li>

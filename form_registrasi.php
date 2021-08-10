@@ -18,6 +18,7 @@ if (isset($_POST['daftar'])) {
     $alamat = $_POST['alamat'];
     $status = 'Menunggu...!';
     $icon = 'info';
+    $color = 'text-warning';
 
 
     // INPUT DATA JALUR PENDIDIKAN
@@ -68,7 +69,7 @@ if (isset($_POST['daftar'])) {
     } else {
         if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_path)) {
 
-            $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, jenjang, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$nama_gambar','$jenis_pendaftaran','$jenjang','$asal_sekolah','$jalur_pendaftaran','$status','$icon')");
+            $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, jenjang, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon, color) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$nama_gambar','$jenis_pendaftaran','$jenjang','$asal_sekolah','$jalur_pendaftaran','$status','$icon','$color')");
 
             $id = $koneksi->insert_id;
 
@@ -82,14 +83,6 @@ if (isset($_POST['daftar'])) {
             echo 'Simpan data gagal';
         }
     }
-
-
-
-
-    // Ambil Data Gambar yang Dikirim dari Form
-
-
-
 }
 
 ?>
@@ -376,11 +369,7 @@ if (isset($_POST['daftar'])) {
                     </div>
                 </div>
             </div>
-
-
         </form>
-
-
     </div>
 </div>
 
