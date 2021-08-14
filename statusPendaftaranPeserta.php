@@ -64,9 +64,9 @@ include "koneksi.php";
             <div class="card-header mb-5">
                 <nav class="navbar navbar-light bg-light">
                     <h3>Peserta Yang Lolos / Tidak Lolos</h3>
-                    <form class="form-inline" action="index.php" method="get">
-                        <input class="form-control mr-sm-2" name="cari" type="search" placeholder="Cari" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" value="cari" type="submit">Cari</button>
+                    <form class="form-inline" action="" method="POST">
+                        <input class="form-control mr-sm-2" name="cari" type="search" placeholder="Cari" aria-label="Search" autofocus autocomplete="off">
+                        <button class="btn btn-outline-success my-2 my-sm-0" name="cari" type="submit">Cari</button>
                     </form>
                 </nav>
             </div>
@@ -90,7 +90,15 @@ include "koneksi.php";
 
                             <?php
                             $no = 1;
-                            $sql = $koneksi->query("select * from tbl_peserta ");
+                            $sql = $koneksi->query("select * from tbl_peserta");
+
+                            if (isset($_POST["cari"])) {
+                                $sql = $koneksi->query("select * from tbl_peserta WHERE nama='$namaPeserta'");
+                                return $sql;
+                                $hasil = $sql->num_rows;
+                                $namaPeserta = $_POST["cari"];
+                            }
+
                             while ($data = $sql->fetch_assoc()) {
                                 # code...
                             ?>
@@ -146,6 +154,7 @@ include "koneksi.php";
             </div>
         </div>
     </div>
+
 
     <!-- =========END VIEW DATA PESERTA======== -->
     <!-- =========END VIEW DATA PESERTA======== -->

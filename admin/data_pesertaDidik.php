@@ -44,7 +44,7 @@ include "../koneksi.php";
                                 <?php
 
                                 $no = 1;
-                                $sql = $koneksi->query("select * from tbl_peserta ");
+                                $sql = $koneksi->query("select * from tbl_peserta");
                                 while ($data = $sql->fetch_assoc()) {
                                     # code...
                                 ?>

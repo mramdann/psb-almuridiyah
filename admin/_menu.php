@@ -69,7 +69,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="dataUser.php?aksi=list"><i class="fa fa-circle-o"></i> Data User</a></li>
-                            <li><a href="tahun_ajaran.php"><i class="fa fa-circle-o"></i> Data Tahun Ajaran</a></li>
+                            <li><a href="tahun_ajaran.php?aksi=list"><i class="fa fa-circle-o"></i> Data Tahun Ajaran</a></li>
                         </ul>
                     </li>
                     <li><a href="data_pesertaDidik.php?aksi=list"><i class="fa fa-edit"></i> <span>Data Peserta Didik</span></a></li>
