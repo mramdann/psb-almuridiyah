@@ -4,7 +4,7 @@
 <!-- Mirrored from preview.colorlib.com/theme/academics/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Aug 2021 15:05:45 GMT -->
 
 <head>
-    <title>Academics &mdash; Website by Colorlib</title>
+    <title>ALmuridiyah &mdash; Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
@@ -40,7 +40,7 @@
                         <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> <span class="__cf_email__" data-cfemail="a9c0c7cfc6e9c4d0cdc6c4c8c0c787cac6c4">[email&#160;protected]</span></a>
                     </div>
                     <div class="col-lg-3 text-right">
-                        <a href="http://localhost/psb-almuridiyah/admin/" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+                        <a href="http://localhost/psb-almuridiyah/admin/login.php" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
                         <a href="form_registrasi.php" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Daftar</a>
                     </div>
                 </div>

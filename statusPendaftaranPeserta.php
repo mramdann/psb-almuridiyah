@@ -165,7 +165,7 @@ include "koneksi.php";
 
 <?php } else if ($view == 'detailPeserta') { ?>
 
-    <div class="container pt-5 mb-5">
+    <div class="container pt-5 mb-5" style="width: 800px;">
 
 
         <div class="shadow p-3 mb-5 bg-white rounded">
@@ -187,7 +187,7 @@ include "koneksi.php";
                         # code...
                     ?>
                         <div class="col-md-6">
-                            <img style="width: 500px;" src="assets/img/peserta/xperson_2.jpg.pagespeed.ic.ZhHlp5WpL3.jpg" alt="...">
+                            <img style="width: 300px;" src="assets/img/peserta/xperson_2.jpg.pagespeed.ic.ZhHlp5WpL3.jpg" alt="...">
                         </div>
                         <div class="col-md-6">
                             <div class="card-body">
@@ -231,14 +231,10 @@ include "koneksi.php";
                                         <td>: <?= $data['no_hp'] ?></td>
                                     </tr>
                                     <tr class="bg-primary">
-                                        <td> </td>
+                                        <td></td>
                                         <td></td>
                                     </tr>
-                                    <tr>
-                                        <td> </td>
-                                        <td>
-                                        </td>
-                                    </tr>
+
                                     <tr>
                                         <td><span> Asal Sekolah</span> </td>
                                         <td>: <?= $data['asal_sekolah'] ?></td>
@@ -257,16 +253,10 @@ include "koneksi.php";
                                         <td>: <?= $data['jalur_pendaftaran'] ?></td>
                                     </tr>
                                     <tr class="bg-primary">
-                                        <td> </td>
-                                        <td>
-                                        </td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
 
-                                    <tr>
-                                        <td> </td>
-                                        <td>
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td><span> Nama Ayah</span> </td>
                                         <td>: <?= $data['nama_ayah'] ?></td>
@@ -285,15 +275,10 @@ include "koneksi.php";
                                         <td>: <?= $data['pendidikan_a'] ?></td>
                                     </tr>
                                     <tr class="bg-primary">
-                                        <td> </td>
-                                        <td>
-                                        </td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
-                                    <tr>
-                                        <td> </td>
-                                        <td>
-                                        </td>
-                                    </tr>
+
                                     <tr>
                                         <td><span> Nama Ibu</span> </td>
                                         <td>: <?= $data['nama_ibu'] ?></td>
@@ -315,8 +300,7 @@ include "koneksi.php";
                                 </table>
                             </div>
                         </div>
-                    <?php
-                    } ?>
+
                 </div>
             </div>
 
@@ -327,9 +311,15 @@ include "koneksi.php";
                             KEMBALI
                         </button>
                     </a>
+                    <a href="print.php?id=<?= $data['id_peserta'] ?>" target="_blank">
+                        <button type="button" class="btn btn-primary">
+                            CETAK
+                        </button>
+                    </a>
                 </div>
             </div>
-
+        <?php
+                    } ?>
         </div>
     </div>
     <!-- =========END DETAIL DATA PESERTA======== -->
