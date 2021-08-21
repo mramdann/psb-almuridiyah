@@ -74,6 +74,7 @@
                     </li>
                     <li><a href="data_pesertaDidik.php?aksi=list"><i class="fa fa-edit"></i> <span>Data Peserta Didik</span></a></li>
                     <li><a href="."><i class="fa fa-file-text-o"></i> <span>Laporan</span></a></li>
+                    <li><a href="logout.php"><i class="fa fa-file-logout-o"></i> <span>logout</span></a></li>
                 </ul>
             </section>
 
