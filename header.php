@@ -66,7 +66,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="contact.php" class="nav-link text-left">Contact</a>
+                                    <a href="kontak.php" class="nav-link text-left">Kontak</a>
                                 </li>
                             </ul>
                             </ul>

@@ -107,8 +107,8 @@ if (isset($_POST['daftar'])) {
                 </h2>
             </div>
         </div>
-
-        <form action="" method="POST" enctype="multipart/form-data">
+<div class="shadow p-3 mb-5 bg-white rounded">
+ <form action="" method="POST" enctype="multipart/form-data">
 
             <div class="card">
                 <div class="card-body">
@@ -370,7 +370,7 @@ if (isset($_POST['daftar'])) {
                 </div>
             </div>
         </form>
-    </div>
+    </div>  
 </div>
 
 
