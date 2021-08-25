@@ -245,14 +245,14 @@ $status = $data['status_pendaftaran'];
 
 if ($status == "Menunggu...!"){
             echo '  <td>
-                                                <a href="data_pesertaDidik.php?aksi=acc&id=<?= $data['id_peserta'] ?>">
+                                                <a href="data_pesertaDidik.php?aksi=acc&id='.$data["id_peserta"].'">
                                                     <button type="button" class="btn btn-primary">
                                                         TERIMA PESRTA
                                                     </button>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="data_pesertaDidik.php?aksi=tolak&id=<?= $data['id_peserta'] ?>">
+                                                <a href="data_pesertaDidik.php?aksi=tolak&id=$data["id_peserta"]">
                                                     <button type="button" class="btn btn-primary">
                                                         TOLAK PESERTA
                                                     </button>
@@ -262,7 +262,6 @@ if ($status == "Menunggu...!"){
 
 }
 ?>
-
 
                                           
                                         </tr>
