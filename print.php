@@ -43,7 +43,7 @@ include "koneksi.php";
                 <div class="row no-gutters">
                     <?php
                     $id = $_GET['id'];
-                    $sql = $koneksi->query("SELECT * FROM tbl_peserta a JOIN tbl_ayah b ON a.id_peserta = b.id_peserta JOIN tbl_ibu c ON a.id_peserta = c.id_peserta WHERE a.id_peserta='$id'");
+                    $sql = $koneksi->query("SELECT * FROM tbl_peserta  WHERE id_peserta='$id'");
                     while ($data = $sql->fetch_assoc()) {
                         # code...
                     ?>
@@ -104,10 +104,7 @@ include "koneksi.php";
                                         <td><span> Jenis Pendaftaran</span> </td>
                                         <td>: <?= $data['jenis_pendaftaran'] ?></td>
                                     </tr>
-                                    <tr>
-                                        <td><span> Jenjang</span> </td>
-                                        <td>: <?= $data['jenjang'] ?></td>
-                                    </tr>
+                                  
                                     <tr>
                                         <td><span> Jalur Pendaftaran</span> </td>
                                         <td>: <?= $data['jalur_pendaftaran'] ?></td>
@@ -123,15 +120,15 @@ include "koneksi.php";
 
                                     <tr>
                                         <td><span> Tahun Lahir Ayah</span> </td>
-                                        <td>: <?= $data['thn_lahir_a'] ?></td>
+                                        <td>: <?= $data['thn_lahir_ayah'] ?></td>
                                     </tr>
                                     <tr>
                                         <td><span> Pekerjaan Ayah</span> </td>
-                                        <td>: <?= $data['pekerjaan_a'] ?></td>
+                                        <td>: <?= $data['pekerjaan_ayah'] ?></td>
                                     </tr>
                                     <tr>
                                         <td><span> Pendidikan Ayah</span> </td>
-                                        <td>: <?= $data['pendidikan_a'] ?></td>
+                                        <td>: <?= $data['pendidikan_ayah'] ?></td>
                                     </tr>
                                     <tr class="bg-primary">
                                         <td> </td>
@@ -145,15 +142,15 @@ include "koneksi.php";
 
                                     <tr>
                                         <td><span> Tahun Lahir Ibu</span> </td>
-                                        <td>: <?= $data['thn_lahir_i'] ?></td>
+                                        <td>: <?= $data['thn_lahir_ibu'] ?></td>
                                     </tr>
                                     <tr>
                                         <td><span> Pekerjaan Ibu</span> </td>
-                                        <td>: <?= $data['pekerjaan_i'] ?></td>
+                                        <td>: <?= $data['pekerjaan_ibu'] ?></td>
                                     </tr>
                                     <tr>
                                         <td><span> Pendidikan Ibu</span> </td>
-                                        <td>: <?= $data['pendidikan_i'] ?></td>
+                                        <td>: <?= $data['pendidikan_ibu'] ?></td>
                                     </tr>
 
                                 </table>

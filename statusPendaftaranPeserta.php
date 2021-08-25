@@ -49,11 +49,10 @@ include "koneksi.php";
                 </h2>
             </div>
             <div class="col-lg-4">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, iure dolorum! Nam veniam tempore tenetur aliquam architecto, hic alias quia quisquam, obcaecati laborum dolores. Ex libero cumque veritatis numquam placeat?</p>
+                <p>Selamat untuk adik-adik yang telah di nyatakan lulus seleksi, dan adik-adik yang tidak lulus seleksi, jangan bersedih.</p>
             </div>
             <div class="col-lg-4">
-                <p>Nam veniam tempore tenetur aliquam
-                    architecto, hic alias quia quisquam, obcaecati laborum dolores. Ex libero cumque veritatis numquam placeat?</p>
+                <p>Jangan lupa untuk yang lulus seleksi pendaftaran agar melakukan pendaftaran ulang di kantor sekolah.</p>
             </div>
         </div>
     </div>
@@ -63,7 +62,7 @@ include "koneksi.php";
 
             <div class="card-header mb-5">
                 <nav class="navbar navbar-light bg-light">
-                    <h3>Peserta Yang Lolos / Tidak Lolos</h3>
+                    <h3>Peserta Yang Lulus / Tidak Lulus</h3>
                     <form class="form-inline" action="" method="POST">
                         <input class="form-control mr-sm-2" name="cari" type="search" placeholder="Cari" aria-label="Search" autofocus autocomplete="off">
                         <button class="btn btn-outline-success my-2 my-sm-0" name="cari" type="submit">Cari</button>
@@ -182,7 +181,7 @@ include "koneksi.php";
                 <div class="row no-gutters">
                     <?php
                     $id = $_GET['id'];
-                    $sql = $koneksi->query("SELECT * FROM tbl_peserta a JOIN tbl_ayah b ON a.id_peserta = b.id_peserta JOIN tbl_ibu c ON a.id_peserta = c.id_peserta WHERE a.id_peserta='$id'");
+                    $sql = $koneksi->query("SELECT * FROM tbl_peserta where id_peserta='$id'");
                     while ($data = $sql->fetch_assoc()) {
                         # code...
                     ?>
@@ -244,10 +243,7 @@ include "koneksi.php";
                                         <td><span> Jenis Pendaftaran</span> </td>
                                         <td>: <?= $data['jenis_pendaftaran'] ?></td>
                                     </tr>
-                                    <tr>
-                                        <td><span> Jenjang</span> </td>
-                                        <td>: <?= $data['jenjang'] ?></td>
-                                    </tr>
+                                   
                                     <tr>
                                         <td><span> Jalur Pendaftaran</span> </td>
                                         <td>: <?= $data['jalur_pendaftaran'] ?></td>
@@ -264,15 +260,15 @@ include "koneksi.php";
 
                                     <tr>
                                         <td><span> Tahun Lahir Ayah</span> </td>
-                                        <td>: <?= $data['thn_lahir_a'] ?></td>
+                                        <td>: <?= $data['thn_lahir_ayah'] ?></td>
                                     </tr>
                                     <tr>
                                         <td><span> Pekerjaan Ayah</span> </td>
-                                        <td>: <?= $data['pekerjaan_a'] ?></td>
+                                        <td>: <?= $data['pekerjaan_ayah'] ?></td>
                                     </tr>
                                     <tr>
                                         <td><span> Pendidikan Ayah</span> </td>
-                                        <td>: <?= $data['pendidikan_a'] ?></td>
+                                        <td>: <?= $data['pendidikan_ayah'] ?></td>
                                     </tr>
                                     <tr class="bg-primary">
                                         <td></td>
@@ -286,15 +282,15 @@ include "koneksi.php";
 
                                     <tr>
                                         <td><span> Tahun Lahir Ibu</span> </td>
-                                        <td>: <?= $data['thn_lahir_i'] ?></td>
+                                        <td>: <?= $data['thn_lahir_ibu'] ?></td>
                                     </tr>
                                     <tr>
                                         <td><span> Pekerjaan Ibu</span> </td>
-                                        <td>: <?= $data['pekerjaan_i'] ?></td>
+                                        <td>: <?= $data['pekerjaan_ibu'] ?></td>
                                     </tr>
                                     <tr>
                                         <td><span> Pendidikan Ibu</span> </td>
-                                        <td>: <?= $data['pendidikan_i'] ?></td>
+                                        <td>: <?= $data['pendidikan_ibu'] ?></td>
                                     </tr>
 
                                 </table>
