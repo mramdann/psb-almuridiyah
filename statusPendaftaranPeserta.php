@@ -63,10 +63,7 @@ include "koneksi.php";
             <div class="card-header mb-5">
                 <nav class="navbar navbar-light bg-light">
                     <h3>Peserta Yang Lulus / Tidak Lulus</h3>
-                    <form class="form-inline" action="" method="POST">
-                        <input class="form-control mr-sm-2" name="cari" type="search" placeholder="Cari" aria-label="Search" autofocus autocomplete="off">
-                        <button class="btn btn-outline-success my-2 my-sm-0" name="cari" type="submit">Cari</button>
-                    </form>
+                   
                 </nav>
             </div>
 
@@ -130,30 +127,7 @@ include "koneksi.php";
         </div>
     </div>
 
-    <div class="section-bg style-1" style="background-image:url(images/xhero_1.jpg.pagespeed.ic.-yaFVozZ39.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-                    <span class="icon flaticon-mortarboard"></span>
-                    <h3>Our Philosphy</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea? Dolore, amet reprehenderit.</p>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-                    <span class="icon flaticon-school-material"></span>
-                    <h3>Academics Principle</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
-                        Dolore, amet reprehenderit.</p>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-                    <span class="icon flaticon-library"></span>
-                    <h3>Key of Success</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis recusandae, iure repellat quis delectus ea?
-                        Dolore, amet reprehenderit.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
 
     <!-- =========END VIEW DATA PESERTA======== -->
     <!-- =========END VIEW DATA PESERTA======== -->
