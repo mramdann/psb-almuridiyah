@@ -12,7 +12,7 @@ include "../koneksi.php";
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            DATA PESERTA DIDIK
+            DATA TAHUN AJARAN
         </h1>
     </section>
 
@@ -23,6 +23,11 @@ include "../koneksi.php";
 
                 <div class="card-header mb-5" style="margin-bottom: 40px;">
                     <h3>Tabel Data Tahun Ajaran</h3>
+                     <a href="tahun_ajaran.php?aksi=tambah_tahunAjaran">
+                        <button type="button" class="btn btn-primary">
+                            Tambah Data Tahun Ajaran
+                        </button>
+                    </a>
                 </div>
 
                 <div class="card-body">
@@ -98,7 +103,7 @@ include "../koneksi.php";
         <!-- # syntax udapte data loker -->
         <?php
         $id = $_GET['id'];
-        $query_udapte = $koneksi->query("UPDATE tbl_tahunajaran SET status=' On' WHERE id_thnajaran = '$id' ");
+        $query_udapte = $koneksi->query("UPDATE tbl_tahunajaran SET status='aktif' WHERE id_thnajaran = '$id' ");
         if ($query_udapte) {
             echo "<script>alert('data On !')</script>";
         } else {
@@ -112,7 +117,7 @@ include "../koneksi.php";
         <!-- # syntax udapte data loker -->
         <?php
         $id = $_GET['id'];
-        $query_udapte = $koneksi->query("UPDATE tbl_tahunajaran SET status=' Off' WHERE id_thnajaran = '$id' ");
+        $query_udapte = $koneksi->query("UPDATE tbl_tahunajaran SET status='tidakaktif' WHERE id_thnajaran = '$id' ");
         if ($query_udapte) {
             echo "<script>alert('Data Off !')</script>";
         } else {
@@ -121,6 +126,61 @@ include "../koneksi.php";
         echo "<script>location='tahun_ajaran.php?aksi=list'</script>";
         ?>
         <!-- # syntax delete data loker -->
+
+
+
+    <?php } else if ($view == 'tambah_tahunAjaran') {
+
+        // Syntax untuk menyimpan data ke tbl_user jika tombol simpan ditekan
+        if (isset($_POST['simpan'])) {
+            $tAjaran= $_POST['tAjaran'];
+            $status = 'konfirmasi';
+           
+
+            $query_simpan = $koneksi->query("INSERT INTO tbl_tahunajaran (tahunAjaran, status ) VALUES ('$tAjaran','$status')");
+
+            if ($query_simpan) {
+                echo "<script>alert('Data berhasil disimpan !')</script>";
+                echo "<script>location='tahun_ajaran.php?aksi=list'</script>";
+            } else {
+                echo "<script>alert('Data gagal disimpan !')</script>";
+                echo "<script>location='tahun_ajaran.php?aksi=tambah_tahunAjaran'</script>";
+            }
+        } ?>
+
+
+        <section class="content">
+            <div style="width:80%; height:500px; margin:auto; position:relative;">
+                <div class="card" style=" width:650px; position:absolute; top:100px; left:50%; transform: translateX(-50%); border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 7px; box-shadow: -3px 4px 2px rgba(0, 0, 0, 0.3); padding-left: 15px; padding-right: 15px;">
+
+                    <div class="card-header mb-5" style="margin-bottom: 40px;">
+                        <h3>Form Tahun Ajaran</h3>
+                        <a href="dataUser.php?aksi=list"> <button type="button" class="btn btn-primary">
+                                Kembali
+                            </button></a>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="POST">
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <label for="tAjaran">Tahun Ajaran </label>
+                                    <input type="number" class="form-control" name="tAjaran" id="tAjaran" placeholder="Masukan Tahun Ajaran" required>
+                                </div>
+                               
+                            </fieldset>
+                            <div class="form-actions text-center">
+                                <button class="btn btn-primary" type="submit" name="simpan">Simpan</button></a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
 
 
     <?php } ?>

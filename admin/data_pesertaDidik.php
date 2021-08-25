@@ -237,7 +237,14 @@ include "../koneksi.php";
                                         </tr>
 
                                         <tr>
-                                            <td>
+
+<?php  
+$sql = $koneksi->query("select * from tbl_peserta where status_pendaftaran='Menunggu...!'");
+$data = $sql->fetch_assoc();
+$status = $data['status_pendaftaran'];
+
+if ($status == "Menunggu...!"){
+            echo '  <td>
                                                 <a href="data_pesertaDidik.php?aksi=acc&id=<?= $data['id_peserta'] ?>">
                                                     <button type="button" class="btn btn-primary">
                                                         TERIMA PESRTA
@@ -250,7 +257,14 @@ include "../koneksi.php";
                                                         TOLAK PESERTA
                                                     </button>
                                                 </a>
-                                            </td>
+                                            </td>';
+}else{
+
+}
+?>
+
+
+                                          
                                         </tr>
                                     </table>
                                 </div>

@@ -52,7 +52,16 @@
                     </div>
                     <div class="pull-left info">
                         <p>TAHUN AJARAN AKTIF</p>
-                        <p><a href="#"><i class="fa fa-circle text-success margin-r-5"></i> 2021</a></p>
+                        <p><a href="#"><i class="fa fa-circle text-success margin-r-5"></i> <?php
+                                $no = 1;
+                                $sql = $koneksi->query("select * from tbl_tahunajaran where status= 'aktif'");
+                                while ($data = $sql->fetch_assoc()) {
+                                    # code...
+                                ?>
+                                <?= $data['tahunAjaran'] ?>
+                             <?php
+                                } ?>
+                            </a></p>
                     </div>
                 </div>
 

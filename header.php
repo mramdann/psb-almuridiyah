@@ -62,7 +62,10 @@
                                 </li>
 
                                 <li>
-                                    <a href="statusPendaftaranPeserta.php?aksi=list" class="nav-link text-left">Status Pendaftaran</a>
+                                    <a href="statusPendaftaranPeserta.php?aksi=list" class="nav-link text-left">Pengumuman</a>
+                                </li>
+                                 <li>
+                                    <a href="form_registrasi.php" class="nav-link text-left">Form Pendaftaran</a>
                                 </li>
 
                                 <li>

@@ -16,22 +16,33 @@ include "koneksi.php";
 </div>
 
 </header>
+
+            
+<?php
+                 $no = 1;
+                 $sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+                 while ($data = $sql->fetch_assoc()) {
+                 ?>
 <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image:url(images/xbg_1.jpg.pagespeed.ic.bYKh1zv1gk.jpg)">
     <div class="container">
-        <div class="row align-items-end">
+        <div class="row align-items-end"></div>
             <div class="col-lg-7">
-                <h2 class="mb-0">Setatus Pendaftaran Peserta</h2>
-
+                <h2 class="mb-0">pengumuman hasil seleksi penemerimaan siswa baru tahun ajaran <?= $data['tahunAjaran'] ?></h2>
             </div>
         </div>
     </div>
 </div>
 
+        <?php } 
+    ?>
+          
+    
+
 <div class="custom-breadcrumns border-bottom">
     <div class="container">
-        <a href="#">Home</a>
+        <a href="http://localhost/psb-almuridiyah/statusPendaftaranPeserta.php">Home</a>
         <span class="mx-3 icon-keyboard_arrow_right"></span>
-        <span class="current">Status Pendaftaran</span>
+        <span class="current">Pengumuman</span>
     </div>
 </div>
 
@@ -40,12 +51,20 @@ include "koneksi.php";
 <!-- =========VIEW DATA PESERTA======== -->
 
 <?php if ($view == 'list' or $view == NULL) { ?>
+    
 
-    <div class="container pt-5 mb-5">
+   
+    <?php  
+$sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+$data = $sql->fetch_assoc();
+$status = $data['status'];
+
+if ($status == "aktif"){
+echo ' <div class="container pt-5 mb-5">
         <div class="row">
             <div class="col-lg-4">
                 <h2 class="section-title-underline">
-                    <span>Pengumuman Hasil</span>
+                    <span>Pengumuman</span>
                 </h2>
             </div>
             <div class="col-lg-4">
@@ -56,8 +75,38 @@ include "koneksi.php";
             </div>
         </div>
     </div>
-
     <div class="container pt-5 mb-5">
+    <div class="site-section">
+        <div class="container">
+            <div class="row  justify-content-center text-center">
+                <div class="col-lg-6 mb-5">
+                  
+                     <p><a href="statusPendaftaranPeserta.php?aksi=hasilseleksi" class="btn btn-primary px-4 rounded-0">Selanjutnya</a></p>
+                </div>
+            </div>
+     </div>
+    </div>
+</div>';
+}else{
+echo '<div class="container pt-5 mb-5">
+    <div class="site-section">
+        <div class="container">
+            <div class="row  justify-content-center text-center">
+                <div class="col-lg-6 mb-5">
+                   <div class="alert alert-danger" role="alert">Belum ada pendaftaran yang dibuka!</div>
+                     <p><a href="http://localhost/psb-almuridiyah/" class="btn btn-primary px-4 rounded-0">Kembali</a></p>
+                </div>
+            </div>
+     </div>
+    </div>
+</div>';
+}
+
+?>
+
+    <?php } else if ($view == 'hasilseleksi') { ?>
+
+        <div class="container pt-5 mb-5">
         <div class="shadow p-3 mb-5 bg-white rounded">
 
             <div class="card-header mb-5">
@@ -87,13 +136,6 @@ include "koneksi.php";
                             <?php
                             $no = 1;
                             $sql = $koneksi->query("select * from tbl_peserta");
-
-                            if (isset($_POST["cari"])) {
-                                $sql = $koneksi->query("select * from tbl_peserta WHERE nama='$namaPeserta'");
-                                return $sql;
-                                $hasil = $sql->num_rows;
-                                $namaPeserta = $_POST["cari"];
-                            }
 
                             while ($data = $sql->fetch_assoc()) {
                                 # code...
@@ -126,8 +168,6 @@ include "koneksi.php";
             </div>
         </div>
     </div>
-
-    
 
     <!-- =========END VIEW DATA PESERTA======== -->
     <!-- =========END VIEW DATA PESERTA======== -->

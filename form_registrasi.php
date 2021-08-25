@@ -84,17 +84,35 @@ if (isset($_POST['daftar'])) {
 
 ?>
 
+
+
+
+<?php
+                 $no = 1;
+                 $sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+                 while ($data = $sql->fetch_assoc()) {
+                 ?>
 <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image:url(images/xbg_1.jpg.pagespeed.ic.bYKh1zv1gk.jpg)">
     <div class="container">
         <div class="row align-items-end">
             <div class="col-lg-7">
-                <h2 class="mb-0">Form Pendaftaran</h2>
-
+                <h2 class="mb-0">Form Pendaftaran Tahun Ajaran <?= $data['tahunAjaran'] ?></h2>
             </div>
         </div>
     </div>
 </div>
+        <?php } 
+    ?>
+        
 
+
+<?php  
+$sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+$data = $sql->fetch_assoc();
+$status = $data['status'];
+
+if ($status == "aktif"){
+echo '
 <div class="site-section">
     <div class="container">
         <div class="row mb-5 justify-content-center text-center">
@@ -338,7 +356,24 @@ if (isset($_POST['daftar'])) {
             </div>
         </form>
     </div>  
-</div>
+</div>';
+}else{
+echo '
+<div class="container pt-5 mb-5">
+    <div class="site-section">
+        <div class="container">
+            <div class="row  justify-content-center text-center">
+                <div class="col-lg-6 mb-5">
+                   <div class="alert alert-danger" role="alert">Belum ada Pendaftaran Yang dibuka!</div>
+                     <p><a href="http://localhost/psb-almuridiyah/" class="btn btn-primary px-4 rounded-0">Kembali</a></p>
+                </div>
+            </div>
+     </div>
+    </div>
+</div>';
+}
+
+?>
 
 
 
