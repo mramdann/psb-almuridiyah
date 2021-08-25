@@ -1,4 +1,5 @@
 <?php include "header.php";
+
 include "koneksi.php";
 
 
@@ -8,6 +9,7 @@ if (isset($_POST['daftar'])) {
     // INPUT DATA DIRI PESERTA
 
     $nama = $_POST['nama'];
+    
     $kelamin = $_POST['kelamin'];
     $nik = $_POST['nik'];
     $kk = $_POST['kk'];
@@ -19,12 +21,13 @@ if (isset($_POST['daftar'])) {
     $status = 'Menunggu...!';
     $icon = 'info';
     $color = 'text-warning';
+    $id_thnajaran= $koneksi->query("select * from tbl_tahunajaran where id_thnajaran");
+
 
 
     // INPUT DATA JALUR PENDIDIKAN
 
     $jenis_pendaftaran = $_POST['jenis_pendaftaran'];
-    $jenjang = $_POST['jenjang'];
     $asal_sekolah = $_POST['asal_sekolah'];
     $jalur_pendaftaran = $_POST['jalur_pendaftaran'];
 
@@ -69,16 +72,10 @@ if (isset($_POST['daftar'])) {
     } else {
         if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_path)) {
 
-            $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, jenjang, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon, color) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$nama_gambar','$jenis_pendaftaran','$jenjang','$asal_sekolah','$jalur_pendaftaran','$status','$icon','$color')");
-
-            $id = $koneksi->insert_id;
-
-            $queryAyah = $koneksi->query("INSERT INTO tbl_ayah (nama_ayah, pendidikan_a, pekerjaan_a, thn_lahir_a, id_peserta) VALUES (' $nama_ayah',' $pendidikan_ayah',' $pekerjaan_ayah','$thn_lahir_ayah','$id')");
-
-            $queryIbu = $koneksi->query("INSERT INTO tbl_ibu (nama_ibu, pendidikan_i, pekerjaan_i, thn_lahir_i, id_peserta) VALUES (' $nama_ibu',' $pendidikan_ibu',' $pekerjaan_ibu','$thn_lahir_ibu','$id')");
+            $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon, color, nama_ayah, pendidikan_ayah, pekerjaan_ayah, thn_lahir_ayah, nama_ibu, pendidikan_ibu, pekerjaan_ibu, thn_lahir_ibu) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$nama_gambar','$jenis_pendaftaran','$asal_sekolah','$jalur_pendaftaran','$status','$icon','$color','$nama_ayah',' $pendidikan_ayah',' $pekerjaan_ayah','$thn_lahir_ayah','$nama_ibu',' $pendidikan_ibu',' $pekerjaan_ibu','$thn_lahir_ibu')");
 
             echo "<script>alert('data berhasil di tambahkan ! ...')</script>";
-            echo "<script>location='form_registrasi.php'</script>";
+            echo "<script>location='statusPendaftaranPeserta.php?aksi=list'</script>";
         } else {
             echo 'Simpan data gagal';
         }
@@ -125,12 +122,12 @@ if (isset($_POST['daftar'])) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" name="nama" id="nama" class="form-control form-control-lg" placeholder="Nama Harus Sesuai Dengan KTP Atatu Ijazah">
+                            <input type="text" name="nama" id="nama" class="form-control form-control-lg" placeholder="Nama Harus Sesuai Dengan KTP Atatu Ijazah" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="kelamin">Jenis Kelamin</label>
-                            <select class="form-control" name="kelamin" id="kelamin">
+                            <select class="form-control" name="kelamin" id="kelamin" required>
                                 <option></option>
                                 <option value="Laki-Laki">Laki-Laki</option>
                                 <option value="Perempuan">Perempuan</option>
@@ -142,37 +139,37 @@ if (isset($_POST['daftar'])) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="nik">NIK</label>
-                            <input type="number" name="nik" id="nik" class="form-control form-control-lg">
+                            <input type="number" name="nik" id="nik" class="form-control form-control-lg" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="kk">Nomor KK</label>
-                            <input type="number" name="kk" id="kk" class="form-control form-control-lg">
+                            <input type="number" name="kk" id="kk" class="form-control form-control-lg" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="tempat_lahir">Tempat Lahir</label>
-                            <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control form-control-lg">
+                            <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control form-control-lg" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="tgl_lahir">Tanggal Lahir</label>
-                            <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control form-control-lg">
+                            <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control form-control-lg" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="hp">No HP</label>
-                            <input type="number" name="hp" id="hp" class="form-control form-control-lg">
+                            <input type="number" name="hp" id="hp" class="form-control form-control-lg" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="gambar">Foto</label>
-                            <input type="file" name="gambar" id="gambar" class="form-control form-control-lg">
+                            <input type="file" name="gambar" id="gambar" class="form-control form-control-lg" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="agama">Agama</label>
-                            <select class="form-control" name="agama" id="agama">
+                            <select class="form-control" name="agama" id="agama" required>
                                 <option selected></option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen">Kristen</option>
@@ -183,7 +180,7 @@ if (isset($_POST['daftar'])) {
 
                         <div class="col-md-6 form-group">
                             <label for="alamat">Alamat</label>
-                            <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control"></textarea>
+                            <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control" required></textarea>
                         </div>
                     </div>
 
@@ -205,51 +202,27 @@ if (isset($_POST['daftar'])) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="jenis_pendaftaran">Jenis Pendaftaran</label>
-                            <select class="form-control" name="jenis_pendaftaran" id="jenis_pendaftaran">
-                                <option selected></option>
-                                <?php
-                                $sql = $koneksi->query("SELECT * FROM tbl_regist");
-                                while ($data = $sql->fetch_assoc()) {
-                                    # code...
-                                ?>
-                                    <option value="<?= $data['jenis_pendaftaran'] ?>"><?= $data['jenis_pendaftaran'] ?></option>
-                                <?php
-                                } ?>
+                            <select class="form-control" name="jenis_pendaftaran" id="jenis_pendaftaran" required>
+                               <option selected></option>
+                               <option value="Siswa Baru">Siswa Baru</option>
+                               <option value="Pindahan">Pindahan</option> 
                             </select>
                         </div>
 
-                        <div class="col-md-6 form-group">
-                            <label for="jenjang">Pilihan Jenjang</label>
-                            <select class="form-control" name="jenjang" id="jenjang">
-                                <option selected></option>
-                                <?php
-                                $sql = $koneksi->query("SELECT * FROM tbl_regist");
-                                while ($data = $sql->fetch_assoc()) {
-                                    # code...
-                                ?>
-                                    <option value="<?= $data['jenjang'] ?>"><?= $data['jenjang'] ?></option>
-                                <?php
-                                } ?>
-                            </select>
-                        </div>
-
+                       
                         <div class="col-md-6 form-group">
                             <label for="asal_sekolah">Asal Sekolah</label>
-                            <input type="text" name="asal_sekolah" id="asal_sekolah" class="form-control form-control-lg" placeholder="Masukan Asal Sekolah Anda">
+                            <input type="text" name="asal_sekolah" id="asal_sekolah" class="form-control form-control-lg" placeholder="Masukan Asal Sekolah Anda" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="jalur_pendaftaran">Jalur Pendaftaran</label>
-                            <select class="form-control" name="jalur_pendaftaran" id="jalur_pendaftaran">
-                                <option selected></option>
-                                <?php
-                                $sql = $koneksi->query("SELECT * FROM tbl_regist");
-                                while ($data = $sql->fetch_assoc()) {
-                                    # code...
-                                ?>
-                                    <option value="<?= $data['jalur_pendaftaran'] ?>"><?= $data['jalur_pendaftaran'] ?></option>
-                                <?php
-                                } ?>
+                            <select class="form-control" name="jalur_pendaftaran" id="jalur_pendaftaran" required>
+                               <option selected></option>
+                               <option value="Zonasi">Zonasi</option>
+                               <option value="Afirmasi">Afirmasi</option>
+                               <option value="Perpindahan Tugas Orang Tua atau Wali">Perpindahan Tugas Orang Tua atau Wali</option>
+                               <option value="Prestasi">Prestasi</option>
                             </select>
                         </div>
                     </div>
@@ -267,41 +240,39 @@ if (isset($_POST['daftar'])) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="nama_ibu">Nama ayah Kandung</label>
-                            <input type="text" name="nama_ayah" id="nama_ayah" class="form-control form-control-lg" placeholder="Nama Asli ayah Kandung">
+                            <input type="text" name="nama_ayah" id="nama_ayah" class="form-control form-control-lg" placeholder="Nama Asli ayah Kandung" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="thn_lahir_ayah">Tahun Lahir</label>
-                            <input type="text" name="thn_lahir_ayah" id="thn_lahir_ayah" class="form-control form-control-lg" placeholder="Tahun Lahir ayah Kandung. Contoh : 1995">
+                            <input type="text" name="thn_lahir_ayah" id="thn_lahir_ayah" class="form-control form-control-lg" placeholder="Tahun Lahir ayah Kandung. Contoh : 1995" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="pendidikan_ayah">Pendidikan</label>
-                            <select class="form-control" name="pendidikan_ayah" id="pendidikan_ayah">
+                            <select class="form-control" name="pendidikan_ayah" id="pendidikan_ayah" required>
                                 <option selected></option>
-                                <?php
-                                $sql = $koneksi->query("SELECT * FROM tbl_pendidikan");
-                                while ($data = $sql->fetch_assoc()) {
-                                    # code...
-                                ?>
-                                    <option value="<?= $data['pendidikan'] ?>"><?= $data['pendidikan'] ?></option>
-                                <?php
-                                } ?>
+                               <option value="SD">SD</option>
+                                <option value="STLTP">STLTP</option>
+                                <option value="SLTA">SLTA</option>
+                                <option value="D3">D3</option>
+                                <option value="S1">S1</option>
+                                <option value="S2">S2</option>
+                                <option value="S3">S3</option>
                             </select>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="pekerjaan_ayah">Pekerjaan</label>
-                            <select class="form-control" name="pekerjaan_ayah" id="pekerjaan_ayah">
+                            <select class="form-control" name="pekerjaan_ayah" id="pekerjaan_ayah" required>
                                 <option selected></option>
-                                <?php
-                                $sql = $koneksi->query("SELECT * FROM tbl_pekerjaan");
-                                while ($data = $sql->fetch_assoc()) {
-                                    # code...
-                                ?>
-                                    <option value="<?= $data['pekerjaan'] ?>"><?= $data['pekerjaan'] ?></option>
-                                <?php
-                                } ?>
+                                <option value="Buruh">Buruh</option>
+                                <option value="Tani">Tani</option>
+                                <option value="Wirasuasta">Wirasuasta</option>
+                                <option value="Warung Kelontong">Warung Kelontong</option>
+                                <option value="PNS">PNS</option>
+                                <option value="Polri">Polri</option>
+                                <option value="BUMN">BUMN</option>
                             </select>
                         </div>
                     </div>
@@ -320,41 +291,37 @@ if (isset($_POST['daftar'])) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="nama_ibu">Nama Ibu Kandung</label>
-                            <input type="text" name="nama_ibu" id="nama_ibu" class="form-control form-control-lg" placeholder="Nama Asli Ibu Kandung">
+                            <input type="text" name="nama_ibu" id="nama_ibu" class="form-control form-control-lg" placeholder="Nama Asli Ibu Kandung" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="thn_lahir_ibu">Tahun Lahir</label>
-                            <input type="text" name="thn_lahir_ibu" id="thn_lahir_ibu" class="form-control form-control-lg" placeholder="Tahun Lahir Ibu Kandung. Contoh : 1995">
+                            <input type="text" name="thn_lahir_ibu" id="thn_lahir_ibu" class="form-control form-control-lg" placeholder="Tahun Lahir Ibu Kandung. Contoh : 1995" required>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="pendidikan_ibu">Pendidikan</label>
-                            <select class="form-control" name="pendidikan_ibu" id="pendidikan_ibu">
+                            <select class="form-control" name="pendidikan_ibu" id="pendidikan_ibu" required>
                                 <option selected></option>
-                                <?php
-                                $sql = $koneksi->query("SELECT * FROM tbl_pendidikan");
-                                while ($data = $sql->fetch_assoc()) {
-                                    # code...
-                                ?>
-                                    <option value="<?= $data['pendidikan'] ?>"><?= $data['pendidikan'] ?></option>
-                                <?php
-                                } ?>
+                                <option value="SD">SD</option>
+                                <option value="STLTP">STLTP</option>
+                                <option value="SLTA">SLTA</option>
+                                <option value="D3">D3</option>
+                                <option value="S1">S1</option>
+                                <option value="S2">S2</option>
+                                <option value="S3">S3</option>
+
                             </select>
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label for="pekerjaan_ibu">Pekerjaan</label>
-                            <select class="form-control" name="pekerjaan_ibu" id="pekerjaan_ibu">
+                            <select class="form-control" name="pekerjaan_ibu" id="pekerjaan_ibu" required>
                                 <option selected></option>
-                                <?php
-                                $sql = $koneksi->query("SELECT * FROM tbl_pekerjaan");
-                                while ($data = $sql->fetch_assoc()) {
-                                    # code...
-                                ?>
-                                    <option value="<?= $data['pekerjaan'] ?>"><?= $data['pekerjaan'] ?></option>
-                                <?php
-                                } ?>
+                                <option value="IRT">IRT</option>
+                                <option value="Buruh">Buruh</option>
+                                <option value="Tani">Tani</option>
+                                <option value="Wirasuasta" >Wirasuasta</option>
                             </select>
                         </div>
                     </div>

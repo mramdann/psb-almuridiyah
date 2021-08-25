@@ -82,15 +82,7 @@ include "../koneksi.php";
         $id = $_GET['id'];
 
         $sql    = "DELETE FROM tbl_peserta WHERE id_peserta = '$id'";
-        $sql2   = "DELETE FROM tbl_ayah WHERE id_peserta = '$id'";
-        $sql3   = "DELETE FROM tbl_ibu WHERE id_peserta= '$id'";
-
-        $exe    = mysqli_query($koneksi, $sql);
-        $exe2  = mysqli_query($koneksi, $sql2);
-        $exe2  = mysqli_query($koneksi, $sql3);
-
-
-
+       
         if ($sql) {
             echo "<script>alert('Data lamaran berhasil di hapus !')</script>";
         } else {
@@ -116,7 +108,7 @@ include "../koneksi.php";
 
                     <?php
                     $id = $_GET['id'];
-                    $sql = $koneksi->query("SELECT * FROM tbl_peserta a JOIN tbl_ayah b ON a.id_peserta = b.id_peserta JOIN tbl_ibu c ON a.id_peserta = c.id_peserta WHERE a.id_peserta='$id'");
+                    $sql = $koneksi->query("SELECT * FROM tbl_peserta WHERE id_peserta='$id'");
                     while ($data = $sql->fetch_assoc()) {
                         # code...
                     ?>
@@ -183,10 +175,7 @@ include "../koneksi.php";
                                             <td><span> Jenis Pendaftaran</span> </td>
                                             <td>: <?= $data['jenis_pendaftaran'] ?></td>
                                         </tr>
-                                        <tr>
-                                            <td><span> Jenjang</span> </td>
-                                            <td>: <?= $data['jenjang'] ?></td>
-                                        </tr>
+                                      
                                         <tr>
                                             <td><span> Jalur Pendaftaran</span> </td>
                                             <td>: <?= $data['jalur_pendaftaran'] ?></td>
@@ -209,15 +198,15 @@ include "../koneksi.php";
 
                                         <tr>
                                             <td><span> Tahun Lahir Ayah</span> </td>
-                                            <td>: <?= $data['thn_lahir_a'] ?></td>
+                                            <td>: <?= $data['thn_lahir_ayah'] ?></td>
                                         </tr>
                                         <tr>
                                             <td><span> Pekerjaan Ayah</span> </td>
-                                            <td>: <?= $data['pekerjaan_a'] ?></td>
+                                            <td>: <?= $data['pekerjaan_ayah'] ?></td>
                                         </tr>
                                         <tr>
                                             <td><span> Pendidikan Ayah</span> </td>
-                                            <td>: <?= $data['pendidikan_a'] ?></td>
+                                            <td>: <?= $data['pendidikan_ayah'] ?></td>
                                         </tr>
                                         <tr class="bg-primary">
                                             <td> </td>
@@ -236,19 +225,20 @@ include "../koneksi.php";
 
                                         <tr>
                                             <td><span> Tahun Lahir Ibu</span> </td>
-                                            <td>: <?= $data['thn_lahir_i'] ?></td>
+                                            <td>: <?= $data['thn_lahir_ibu'] ?></td>
                                         </tr>
                                         <tr>
                                             <td><span> Pekerjaan Ibu</span> </td>
-                                            <td>: <?= $data['pekerjaan_i'] ?></td>
+                                            <td>: <?= $data['pekerjaan_ibu'] ?></td>
                                         </tr>
                                         <tr>
                                             <td><span> Pendidikan Ibu</span> </td>
-                                            <td>: <?= $data['pendidikan_i'] ?></td>
+                                            <td>: <?= $data['pendidikan_ibu'] ?></td>
                                         </tr>
+
                                         <tr>
                                             <td>
-                                                <a href="data_pesertaDidik.php?aksi=acc&id=<?= $id ?>">
+                                                <a href="data_pesertaDidik.php?aksi=acc&id=<?= $data['id_peserta'] ?>">
                                                     <button type="button" class="btn btn-primary">
                                                         TERIMA PESRTA
                                                     </button>
@@ -273,11 +263,16 @@ include "../koneksi.php";
                     <!-- # syntax udapte data loker -->
                     <?php
                     $id = $_GET['id'];
-                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran=' Diterima', icon='done' color='text-success' WHERE id_peserta = '$id' ");
+
+                    $status='Diterima';
+                    $icon='done';
+                    $color='text-success';
+
+                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran='$status', icon='$icon', color='$color' WHERE id_peserta = '$id'");
                     if ($query_udapte) {
                         echo "<script>alert('Data lamaran berhasil diterima !')</script>";
-                    } else {
-                        echo "<script>alert('Data lamaran gagal diterima !')</script>";
+                    }else {
+                        echo "<script>alert('Data lamaran gagal ditolak !')</script>";
                     }
                     echo "<script>location='data_pesertaDidik.php?aksi=list'</script>";
                     ?>
@@ -287,7 +282,7 @@ include "../koneksi.php";
                     <!-- # syntax udapte data loker -->
                     <?php
                     $id = $_GET['id'];
-                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran='Ditolak', icon='close' color='text-danger' WHERE id_peserta = '$id' ");
+                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran='Ditolak', icon='close', color='text-danger' WHERE id_peserta = '$id' ");
                     if ($query_udapte) {
                         echo "<script>alert('Data lamaran berhasil ditolak !')</script>";
                     } else {

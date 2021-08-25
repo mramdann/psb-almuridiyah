@@ -1,7 +1,7 @@
 <?php
 
 $view = $_GET['aksi'];
-echo "<title>" . $view . "  Data Peserta Didik</title>";
+echo "<title>" . $view . "  Data User</title>";
 // memanggil file header dan menu
 include "_header.php";
 include "_menu.php";
