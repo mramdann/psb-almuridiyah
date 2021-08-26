@@ -21,7 +21,10 @@ if (isset($_POST['daftar'])) {
     $status = 'Menunggu...!';
     $icon = 'info';
     $color = 'text-warning';
-    $id_thnajaran= $koneksi->query("select * from tbl_tahunajaran where id_thnajaran");
+    
+    $id= $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+    $data = $id->fetch_assoc();
+    $ajaran = $data['id_thnajaran'];
 
 
 
@@ -72,12 +75,13 @@ if (isset($_POST['daftar'])) {
     } else {
         if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_path)) {
 
-            $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon, color, nama_ayah, pendidikan_ayah, pekerjaan_ayah, thn_lahir_ayah, nama_ibu, pendidikan_ibu, pekerjaan_ibu, thn_lahir_ibu) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$nama_gambar','$jenis_pendaftaran','$asal_sekolah','$jalur_pendaftaran','$status','$icon','$color','$nama_ayah',' $pendidikan_ayah',' $pekerjaan_ayah','$thn_lahir_ayah','$nama_ibu',' $pendidikan_ibu',' $pekerjaan_ibu','$thn_lahir_ibu')");
+            $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon, color, nama_ayah, pendidikan_ayah, pekerjaan_ayah, thn_lahir_ayah, nama_ibu, pendidikan_ibu, pekerjaan_ibu, thn_lahir_ibu, id_thnajaran) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$nama_gambar','$jenis_pendaftaran','$asal_sekolah','$jalur_pendaftaran','$status','$icon','$color','$nama_ayah',' $pendidikan_ayah',' $pekerjaan_ayah','$thn_lahir_ayah','$nama_ibu',' $pendidikan_ibu',' $pekerjaan_ibu','$thn_lahir_ibu','$ajaran')");
 
             echo "<script>alert('data berhasil di tambahkan ! ...')</script>";
             echo "<script>location='statusPendaftaranPeserta.php?aksi=list'</script>";
         } else {
-            echo 'Simpan data gagal';
+            
+             echo "<script>alert('Simpan data gagal ! ...')</script>";
         }
     }
 }
