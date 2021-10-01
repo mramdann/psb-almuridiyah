@@ -36,8 +36,8 @@
           <span>Program Sekolah</span>
         </h2>
         <p>Untuk meningkatkan prestasi olahraga dan membangun karakter para siswa/i, kami menawarkan serangkaian jenis bela diri dan olahraga, seperti karate, pencak silat, taekwondo, renang, tenis, bulu tangkis, sepak bola, atletik, bola basket, tenis meja, bola voli, sepak takraw dan panjat tebing.</p>
-        <p> 
-SMA Almuridiyah juga secara arah membina siswa/i yang ingin meningkatkan capaian akademis masing-masing dan ikut serta dalam lomba-lomba di luar sekolah.</p>
+        <p>
+          SMA Almuridiyah juga secara arah membina siswa/i yang ingin meningkatkan capaian akademis masing-masing dan ikut serta dalam lomba-lomba di luar sekolah.</p>
       </div>
     </div>
     <div class="row">
@@ -49,8 +49,8 @@ SMA Almuridiyah juga secara arah membina siswa/i yang ingin meningkatkan capaian
           <span>KEGIATAN EKSTRAKURIKULER</span>
         </h2>
         <p>Pada sore hari tersedia aneka program waktu luang di berbagai bidang seperti olahraga, kesenian atau musik. Setiap tahun para siswa/i berpartisipasi dalam perlombaan di tingkat nasional dan internasional dan sudah meraih banyak penghargaan di beberapa kategori berbeda.
-</p>
-        
+        </p>
+
       </div>
     </div>
   </div>
@@ -61,17 +61,17 @@ SMA Almuridiyah juga secara arah membina siswa/i yang ingin meningkatkan capaian
       <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
         <span class="icon flaticon-mortarboard"></span>
         <h3>Philosphy</h3>
-       
+
       </div>
       <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
         <span class="icon flaticon-school-material"></span>
         <h3>Prinsip Akademik</h3>
-       
+
       </div>
       <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
         <span class="icon flaticon-library"></span>
         <h3>Kunci Sukses</h3>
-       
+
       </div>
     </div>
   </div>
@@ -94,7 +94,7 @@ SMA Almuridiyah juga secara arah membina siswa/i yang ingin meningkatkan capaian
           </div>
           <div class="feature-1-content">
             <h2>Personalisasi Pembelajaran</h2>
-          
+
             <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
           </div>
         </div>
@@ -106,7 +106,7 @@ SMA Almuridiyah juga secara arah membina siswa/i yang ingin meningkatkan capaian
           </div>
           <div class="feature-1-content">
             <h2>Sekolah Tepercaya</h2>
-          
+
             <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
           </div>
         </div>
@@ -118,7 +118,7 @@ SMA Almuridiyah juga secara arah membina siswa/i yang ingin meningkatkan capaian
           </div>
           <div class="feature-1-content">
             <h2>Peralatan untuk Siswa</h2>
-          
+
             <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
           </div>
         </div>

@@ -17,26 +17,26 @@ include "koneksi.php";
 
 </header>
 
-            
+
 <?php
-                 $no = 1;
-                 $sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
-                 while ($data = $sql->fetch_assoc()) {
-                 ?>
-<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image:url(images/xbg_1.jpg.pagespeed.ic.bYKh1zv1gk.jpg)">
-    <div class="container">
-        <div class="row align-items-end"></div>
+$no = 1;
+$sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+while ($data = $sql->fetch_assoc()) {
+?>
+    <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image:url(images/xbg_1.jpg.pagespeed.ic.bYKh1zv1gk.jpg)">
+        <div class="container">
+            <div class="row align-items-end"></div>
             <div class="col-lg-7">
                 <h2 class="mb-0">pengumuman hasil seleksi penemerimaan siswa baru tahun ajaran <?= $data['tahunAjaran'] ?></h2>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
-        <?php } 
-    ?>
-          
-    
+<?php }
+?>
+
+
 
 <div class="custom-breadcrumns border-bottom">
     <div class="container">
@@ -47,20 +47,17 @@ include "koneksi.php";
 </div>
 
 
-<!-- =========VIEW DATA PESERTA======== -->
-<!-- =========VIEW DATA PESERTA======== -->
-
 <?php if ($view == 'list' or $view == NULL) { ?>
-    
 
-   
-    <?php  
-$sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
-$data = $sql->fetch_assoc();
-$status = $data['status'];
 
-if ($status == "aktif"){
-echo ' <div class="container pt-5 mb-5">
+
+    <?php
+    $sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+    $data = $sql->fetch_assoc();
+    $status = $data['status'];
+
+    if ($status == "aktif") {
+        echo ' <div class="container pt-5 mb-5">
         <div class="row">
             <div class="col-lg-4">
                 <h2 class="section-title-underline">
@@ -87,8 +84,8 @@ echo ' <div class="container pt-5 mb-5">
      </div>
     </div>
 </div>';
-}else{
-echo '<div class="container pt-5 mb-5">
+    } else {
+        echo '<div class="container pt-5 mb-5">
     <div class="site-section">
         <div class="container">
             <div class="row  justify-content-center text-center">
@@ -100,27 +97,27 @@ echo '<div class="container pt-5 mb-5">
      </div>
     </div>
 </div>';
-}
+    }
 
-?>
+    ?>
 
-    <?php } else if ($view == 'hasilseleksi') { ?>
+<?php } else if ($view == 'hasilseleksi') { ?>
 
-        <div class="container pt-5 mb-5">
+    <div class="container pt-5 mb-5">
         <div class="shadow p-3 mb-5 bg-white rounded">
 
             <div class="card-header mb-5">
                 <nav class="navbar navbar-light bg-light">
                     <h3>Peserta Yang Lulus / Tidak Lulus</h3>
-                   
+
                 </nav>
             </div>
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover dashboard-task-infos">
+                    <table class="table table-hover table-bordered">
                         <thead>
-                            <tr class="bg-primary">
+                            <tr>
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin</th>
@@ -135,10 +132,9 @@ echo '<div class="container pt-5 mb-5">
 
                             <?php
                             $no = 1;
-                            $sql = $koneksi->query("select * from tbl_peserta");
+                            $sql = $koneksi->query("select * from tbl_peserta order by id_peserta desc");
 
                             while ($data = $sql->fetch_assoc()) {
-                                # code...
                             ?>
 
                                 <tr>
@@ -149,7 +145,7 @@ echo '<div class="container pt-5 mb-5">
                                     <td><?= $data['alamat'] ?></td>
                                     <td><?= $data['asal_sekolah'] ?></td>
                                     <td>
-                                        <p class="<?= $data['color'] ?>"><?= $data['status_pendaftaran'] ?> <i class="material-icons"><?= $data['icon'] ?></p></i>
+                                        <p><?= $data['status'] ?> </p>
                                     </td>
                                     <td>
                                         <a href="statusPendaftaranPeserta.php?aksi=detailPeserta&id=<?= $data['id_peserta'] ?>">
@@ -168,13 +164,6 @@ echo '<div class="container pt-5 mb-5">
             </div>
         </div>
     </div>
-
-    <!-- =========END VIEW DATA PESERTA======== -->
-    <!-- =========END VIEW DATA PESERTA======== -->
-
-
-    <!-- =========DETAIL DATA PESERTA======== -->
-    <!-- =========DETAIL DATA PESERTA======== -->
 
 <?php } else if ($view == 'detailPeserta') { ?>
 
@@ -200,11 +189,12 @@ echo '<div class="container pt-5 mb-5">
                         # code...
                     ?>
                         <div class="col-md-6">
-                            <img style="width: 300px;" src="assets/img/peserta/xperson_2.jpg.pagespeed.ic.ZhHlp5WpL3.jpg" alt="...">
+                            <img style="width: 300px;" src="assets/img/peserta/<?= $data['foto'] ?>" alt="...">
                         </div>
                         <div class="col-md-6">
                             <div class="card-body">
-                                <h5 class="card-title <?= $data['color'] ?>"><?= $data['status_pendaftaran'] ?><i class="material-icons"><?= $data['icon'] ?></i></h5>
+                                <h5 class="card-title <?= $data['color'] ?>"><?= $data['status'] ?><i class="material-icons"><?= $data['icon'] ?></i></h5>
+
                                 <table class="table table-hover dashboard-task-infos">
                                     <tr>
                                         <td><span> Nama</span> </td>
@@ -257,7 +247,7 @@ echo '<div class="container pt-5 mb-5">
                                         <td><span> Jenis Pendaftaran</span> </td>
                                         <td>: <?= $data['jenis_pendaftaran'] ?></td>
                                     </tr>
-                                   
+
                                     <tr>
                                         <td><span> Jalur Pendaftaran</span> </td>
                                         <td>: <?= $data['jalur_pendaftaran'] ?></td>
@@ -332,8 +322,6 @@ echo '<div class="container pt-5 mb-5">
                     } ?>
         </div>
     </div>
-    <!-- =========END DETAIL DATA PESERTA======== -->
-    <!-- =========END DETAIL DATA PESERTA======== -->
 
 <?php } ?>
 

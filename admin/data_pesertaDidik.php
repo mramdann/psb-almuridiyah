@@ -6,27 +6,79 @@ echo "<title>" . $view . "  Data Peserta Didik</title>";
 include "_header.php";
 include "_menu.php";
 include "../koneksi.php";
+
+$quer = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+$tahun_ajaran = $quer->fetch_assoc();
 ?>
 
 
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            DATA PESERTA DIDIK
+            DATA PESERTA DIDIK TAHUN AJARAN <?= $tahun_ajaran['tahunAjaran'] ?>
         </h1>
     </section>
 
     <?php if ($view == 'list' or $view == NULL) { ?>
         <section class="content">
 
-            <div class="card" style=" border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 7px; box-shadow: -3px 4px 2px rgba(0, 0, 0, 0.3); padding-left: 15px; padding-right: 15px;">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#fa-icons" data-toggle="tab" aria-expanded="true">Menunggu Persetujuan</a></li>
+                    <li class=""><a href="#glyphicons" data-toggle="tab" aria-expanded="false">Peserta Tidak Lulus</a></li>
+                    <li class=""><a href="#ds" data-toggle="tab" aria-expanded="false">Peserta Lulus</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="fa-icons">
+                        <div class="table-responsive">
+                            <table class="table table-hover dashboard-task-infos">
+                                <thead>
+                                    <tr class="bg-primary">
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>NIK</th>
+                                        <th>Alamat</th>
+                                        <th>Asala Sekolah</th>
+                                        <th>Setatus Pendaftaran</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
 
-                <div class="card-header mb-5" style="margin-bottom: 40px;">
-                    <h3>Tabel Data Peserta</h3>
-                </div>
+                                    $no = 1;
+                                    $tahun_ajaran_aktif = $tahun_ajaran['id_thnajaran'];
+                                    // echo $$tahun_ajaran_aktif;
+                                    $sql = $koneksi->query("select * from tbl_peserta where id_thnajaran = '$tahun_ajaran_aktif' and status='Proses seleksi'");
+                                    while ($data = $sql->fetch_assoc()) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $no ?></td>
+                                            <td><?= $data['nama'] ?></td>
+                                            <td><?= $data['jenis_kelamin'] ?></td>
+                                            <td><?= $data['nik'] ?></td>
+                                            <td><?= $data['alamat'] ?></td>
+                                            <td><?= $data['asal_sekolah'] ?></td>
+                                            <td><?= $data['status'] ?></i></td>
+                                            <td>
+                                                <a href="data_pesertaDidik.php?aksi=hapus_peserta&id=<?= $data['id_peserta'] ?>">
+                                                    <span></span>
+                                                    <i class="material-icons">delete_forever</i>
+                                                </a>
 
-                <div class="card-body">
-                    <div class="table-responsive">
+                                                <a href="data_pesertaDidik.php?aksi=detailPeserta&id=<?= $data['id_peserta'] ?>">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php $no++;
+                                    } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="glyphicons">
                         <table class="table table-hover dashboard-task-infos">
                             <thead>
                                 <tr class="bg-primary">
@@ -44,9 +96,10 @@ include "../koneksi.php";
                                 <?php
 
                                 $no = 1;
-                                $sql = $koneksi->query("select * from tbl_peserta");
+                                $tahun_ajaran_aktif = $tahun_ajaran['id_thnajaran'];
+                                // echo $$tahun_ajaran_aktif;
+                                $sql = $koneksi->query("select * from tbl_peserta where id_thnajaran = '$tahun_ajaran_aktif' and status='Tidak Lulus'");
                                 while ($data = $sql->fetch_assoc()) {
-                                    # code...
                                 ?>
                                     <tr>
                                         <td><?= $no ?></td>
@@ -55,7 +108,54 @@ include "../koneksi.php";
                                         <td><?= $data['nik'] ?></td>
                                         <td><?= $data['alamat'] ?></td>
                                         <td><?= $data['asal_sekolah'] ?></td>
-                                        <td><?= $data['status_pendaftaran'] ?> <i class="material-icons"><?= $data['icon'] ?></i></td>
+                                        <td><?= $data['status'] ?></td>
+                                        <td>
+                                            <a href="data_pesertaDidik.php?aksi=hapus_peserta&id=<?= $data['id_peserta'] ?>">
+                                                <span></span>
+                                                <i class="material-icons">delete_forever</i>
+                                            </a>
+
+                                            <a href="data_pesertaDidik.php?aksi=detailPeserta&id=<?= $data['id_peserta'] ?>">
+                                                <i class="material-icons">visibility</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php $no++;
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="ds">
+                        <table class="table table-hover dashboard-task-infos">
+                            <thead>
+                                <tr class="bg-primary">
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>NIK</th>
+                                    <th>Alamat</th>
+                                    <th>Asala Sekolah</th>
+                                    <th>Setatus Pendaftaran</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                                $no = 1;
+                                $tahun_ajaran_aktif = $tahun_ajaran['id_thnajaran'];
+                                // echo $$tahun_ajaran_aktif;
+                                $sql = $koneksi->query("select * from tbl_peserta where id_thnajaran = '$tahun_ajaran_aktif' and status='Lulus'");
+                                while ($data = $sql->fetch_assoc()) {
+                                ?>
+                                    <tr>
+                                        <td><?= $no ?></td>
+                                        <td><?= $data['nama'] ?></td>
+                                        <td><?= $data['jenis_kelamin'] ?></td>
+                                        <td><?= $data['nik'] ?></td>
+                                        <td><?= $data['alamat'] ?></td>
+                                        <td><?= $data['asal_sekolah'] ?></td>
+                                        <td><?= $data['status'] ?></i></td>
                                         <td>
                                             <a href="data_pesertaDidik.php?aksi=hapus_peserta&id=<?= $data['id_peserta'] ?>">
                                                 <span></span>
@@ -73,7 +173,9 @@ include "../koneksi.php";
                         </table>
                     </div>
                 </div>
+                <!-- /.tab-content -->
             </div>
+
         </section>
 
     <?php } else if ($view == 'hapus_peserta') { ?>
@@ -82,11 +184,11 @@ include "../koneksi.php";
         $id = $_GET['id'];
 
         $sql    = "DELETE FROM tbl_peserta WHERE id_peserta = '$id'";
-       
+
         if ($sql) {
-            echo "<script>alert('Data lamaran berhasil di hapus !')</script>";
+            echo "<script>alert('Data peserta berhasil di hapus !')</script>";
         } else {
-            echo "<script>alert('Data lamaran gagal di hapus !')</script>";
+            echo "<script>alert('Data peserta gagal di hapus !')</script>";
         }
         echo "<script>location='data_pesertaDidik.php?aksi=list'</script>";
         ?>
@@ -175,7 +277,7 @@ include "../koneksi.php";
                                             <td><span> Jenis Pendaftaran</span> </td>
                                             <td>: <?= $data['jenis_pendaftaran'] ?></td>
                                         </tr>
-                                      
+
                                         <tr>
                                             <td><span> Jalur Pendaftaran</span> </td>
                                             <td>: <?= $data['jalur_pendaftaran'] ?></td>
@@ -238,32 +340,28 @@ include "../koneksi.php";
 
                                         <tr>
 
-<?php  
-$sql = $koneksi->query("select * from tbl_peserta where status_pendaftaran='Menunggu...!'");
-$data = $sql->fetch_assoc();
-$status = $data['status_pendaftaran'];
+                                            <?php
+                                            $status = $data['status'];
 
-if ($status == "Menunggu...!"){
-            echo '  <td>
-                                                <a href="data_pesertaDidik.php?aksi=acc&id='.$data["id_peserta"].'">
-                                                    <button type="button" class="btn btn-primary">
+                                            if ($status == "Proses seleksi") {
+                                                echo '  <td>
+                                                <a href="data_pesertaDidik.php?aksi=acc&id=' . $data["id_peserta"] . '">
+                                                    <button type="button" class="btn btn-success">
                                                         TERIMA PESRTA
                                                     </button>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="data_pesertaDidik.php?aksi=tolak&id=$data["id_peserta"]">
-                                                    <button type="button" class="btn btn-primary">
+                                                    <button type="button" class="btn btn-warning">
                                                         TOLAK PESERTA
                                                     </button>
                                                 </a>
                                             </td>';
-}else{
+                                            }
+                                            ?>
 
-}
-?>
 
-                                          
                                         </tr>
                                     </table>
                                 </div>
@@ -277,15 +375,13 @@ if ($status == "Menunggu...!"){
                     <?php
                     $id = $_GET['id'];
 
-                    $status='Diterima';
-                    $icon='done';
-                    $color='text-success';
+                    $status = 'Lulus';
 
-                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran='$status', icon='$icon', color='$color' WHERE id_peserta = '$id'");
+                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status='$status' WHERE id_peserta = '$id'");
                     if ($query_udapte) {
-                        echo "<script>alert('Data lamaran berhasil diterima !')</script>";
-                    }else {
-                        echo "<script>alert('Data lamaran gagal ditolak !')</script>";
+                        echo "<script>alert('Data peserta berhasil diterima !')</script>";
+                    } else {
+                        echo "<script>alert('Data peserta gagal ditolak !')</script>";
                     }
                     echo "<script>location='data_pesertaDidik.php?aksi=list'</script>";
                     ?>
@@ -295,11 +391,11 @@ if ($status == "Menunggu...!"){
                     <!-- # syntax udapte data loker -->
                     <?php
                     $id = $_GET['id'];
-                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status_pendaftaran='Ditolak', icon='close', color='text-danger' WHERE id_peserta = '$id' ");
+                    $query_udapte = $koneksi->query("UPDATE tbl_peserta SET status='Tidak Lulus' WHERE id_peserta = '$id' ");
                     if ($query_udapte) {
-                        echo "<script>alert('Data lamaran berhasil ditolak !')</script>";
+                        echo "<script>alert('Data peserta berhasil ditolak !')</script>";
                     } else {
-                        echo "<script>alert('Data lamaran gagal ditolak !')</script>";
+                        echo "<script>alert('Data peserta gagal ditolak !')</script>";
                     }
                     echo "<script>location='data_pesertaDidik.php?aksi=list'</script>";
                     ?>
@@ -312,17 +408,6 @@ if ($status == "Menunggu...!"){
 
     <?php } ?>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 <?php
 // memanggil file footer

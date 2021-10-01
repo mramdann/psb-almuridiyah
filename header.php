@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from preview.colorlib.com/theme/academics/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Aug 2021 15:05:45 GMT -->
-
 <head>
     <title>ALmuridiyah &mdash; Home</title>
     <meta charset="utf-8">
@@ -40,7 +38,7 @@
                         <a href="#" class="small mr-3"><span class="icon-envelope-o mr-2"></span> <span class="__cf_email__" data-cfemail="a9c0c7cfc6e9c4d0cdc6c4c8c0c787cac6c4">[email&#160;protected]</span></a>
                     </div>
                     <div class="col-lg-3 text-right">
-                        <a href="http://localhost/psb-almuridiyah/admin/login.php" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
+                        <a href="admin/login.php" class="small mr-3"><span class="icon-unlock-alt"></span> Log In</a>
                         <a href="form_registrasi.php" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span> Daftar</a>
                     </div>
                 </div>
@@ -50,7 +48,7 @@
             <div class="container">
                 <div class="d-flex align-items-center">
                     <div class="site-logo">
-                        <a href="index-2.html" class="d-block">
+                        <a href="." class="d-block">
                             <img style="width: 100x; height: 50px;" src="assets/front/images/logo.png" alt="Image" class="img-fluid">
                         </a>
                     </div>
@@ -58,13 +56,13 @@
                         <nav class="site-navigation position-relative text-right" role="navigation">
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                 <li class="active">
-                                    <a href="http://localhost/psb-almuridiyah" class="nav-link text-left">Home</a>
+                                    <a href="." class="nav-link text-left">Home</a>
                                 </li>
 
                                 <li>
                                     <a href="statusPendaftaranPeserta.php?aksi=list" class="nav-link text-left">Pengumuman</a>
                                 </li>
-                                 <li>
+                                <li>
                                     <a href="form_registrasi.php" class="nav-link text-left">Form Pendaftaran</a>
                                 </li>
 

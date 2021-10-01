@@ -9,7 +9,7 @@ if (isset($_POST['daftar'])) {
     // INPUT DATA DIRI PESERTA
 
     $nama = $_POST['nama'];
-    
+
     $kelamin = $_POST['kelamin'];
     $nik = $_POST['nik'];
     $kk = $_POST['kk'];
@@ -18,11 +18,9 @@ if (isset($_POST['daftar'])) {
     $hp = $_POST['hp'];
     $agama = $_POST['agama'];
     $alamat = $_POST['alamat'];
-    $status = 'Menunggu...!';
-    $icon = 'info';
-    $color = 'text-warning';
-    
-    $id= $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+    $status = 'Proses seleksi';
+
+    $id = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
     $data = $id->fetch_assoc();
     $ajaran = $data['id_thnajaran'];
 
@@ -75,13 +73,13 @@ if (isset($_POST['daftar'])) {
     } else {
         if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_path)) {
 
-            $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, asal_sekolah, jalur_pendaftaran, status_pendaftaran, icon, color, nama_ayah, pendidikan_ayah, pekerjaan_ayah, thn_lahir_ayah, nama_ibu, pendidikan_ibu, pekerjaan_ibu, thn_lahir_ibu, id_thnajaran) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$nama_gambar','$jenis_pendaftaran','$asal_sekolah','$jalur_pendaftaran','$status','$icon','$color','$nama_ayah',' $pendidikan_ayah',' $pekerjaan_ayah','$thn_lahir_ayah','$nama_ibu',' $pendidikan_ibu',' $pekerjaan_ibu','$thn_lahir_ibu','$ajaran')");
+            $query = $koneksi->query("INSERT INTO tbl_peserta (nama, jenis_kelamin, nik, no_kk, tempat_lahir, tgl_lahir, no_hp, agama, alamat, foto, jenis_pendaftaran, asal_sekolah, jalur_pendaftaran, status, nama_ayah, pendidikan_ayah, pekerjaan_ayah, thn_lahir_ayah, nama_ibu, pendidikan_ibu, pekerjaan_ibu, thn_lahir_ibu, id_thnajaran) VALUES ('$nama','$kelamin','$nik','$kk','$tempat_lahir','$tgl_lahir','$hp','$agama','$alamat','$nama_gambar','$jenis_pendaftaran','$asal_sekolah','$jalur_pendaftaran','$status','$nama_ayah',' $pendidikan_ayah',' $pekerjaan_ayah','$thn_lahir_ayah','$nama_ibu',' $pendidikan_ibu',' $pekerjaan_ibu','$thn_lahir_ibu','$ajaran')");
 
-            echo "<script>alert('data berhasil di tambahkan ! ...')</script>";
+            echo "<script>alert('Data pendaftaran berhasil disimpan ! ...')</script>";
             echo "<script>location='statusPendaftaranPeserta.php?aksi=list'</script>";
         } else {
-            
-             echo "<script>alert('Simpan data gagal ! ...')</script>";
+
+            echo "<script>alert('Simpan data gagal ! ...')</script>";
         }
     }
 }
@@ -92,31 +90,31 @@ if (isset($_POST['daftar'])) {
 
 
 <?php
-                 $no = 1;
-                 $sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
-                 while ($data = $sql->fetch_assoc()) {
-                 ?>
-<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image:url(images/xbg_1.jpg.pagespeed.ic.bYKh1zv1gk.jpg)">
-    <div class="container">
-        <div class="row align-items-end">
-            <div class="col-lg-7">
-                <h2 class="mb-0">Form Pendaftaran Tahun Ajaran <?= $data['tahunAjaran'] ?></h2>
+$no = 1;
+$sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
+while ($data = $sql->fetch_assoc()) {
+?>
+    <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image:url(images/xbg_1.jpg.pagespeed.ic.bYKh1zv1gk.jpg)">
+        <div class="container">
+            <div class="row align-items-end">
+                <div class="col-lg-7">
+                    <h2 class="mb-0">Form Pendaftaran Tahun Ajaran <?= $data['tahunAjaran'] ?></h2>
+                </div>
             </div>
         </div>
     </div>
-</div>
-        <?php } 
-    ?>
-        
+<?php }
+?>
 
 
-<?php  
+
+<?php
 $sql = $koneksi->query("select * from tbl_tahunajaran where status='aktif'");
 $data = $sql->fetch_assoc();
 $status = $data['status'];
 
-if ($status == "aktif"){
-echo '
+if ($status == "aktif") {
+    echo '
 <div class="site-section">
     <div class="container">
         <div class="row mb-5 justify-content-center text-center">
@@ -361,15 +359,15 @@ echo '
         </form>
     </div>  
 </div>';
-}else{
-echo '
+} else {
+    echo '
 <div class="container pt-5 mb-5">
     <div class="site-section">
         <div class="container">
             <div class="row  justify-content-center text-center">
                 <div class="col-lg-6 mb-5">
                    <div class="alert alert-danger" role="alert">Belum ada Pendaftaran Yang dibuka!</div>
-                     <p><a href="http://localhost/psb-almuridiyah/" class="btn btn-primary px-4 rounded-0">Kembali</a></p>
+                     <p><a href="." class="btn btn-primary px-4 rounded-0">Kembali</a></p>
                 </div>
             </div>
      </div>

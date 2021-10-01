@@ -23,8 +23,10 @@ include "../koneksi.php";
             <div class="col-lg-3 col-xs-6">
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>150</h3>
-
+                        <h3>
+                            <?php $sql = $koneksi->query("select * from tbl_user");
+                            echo $sql->num_rows; ?>
+                        </h3>
                         <p>Data User</p>
                     </div>
                     <div class="icon">
@@ -33,25 +35,14 @@ include "../koneksi.php";
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <div class="col-lg-3 col-xs-6">
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                        <p>Data Peserta Didik Baru</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-users"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
             <div class="col-lg-3 col-xs-6">
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3><?php $sql2 = $koneksi->query("select * from tbl_peserta where status='Proses seleksi'");
+                            echo $sql2->num_rows; ?></h3>
 
-                        <p>Peserta Diterima</p>
+                        <p>Peserta Menunggu Persetujuan</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
@@ -60,11 +51,26 @@ include "../koneksi.php";
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3><?php $sql2 = $koneksi->query("select * from tbl_peserta where status='Lulus'");
+                            echo $sql2->num_rows; ?></h3>
+
+                        <p>Peserta Didik Lulus</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3>65</h3>
+                        <h3><?php $sql2 = $koneksi->query("select * from tbl_peserta where status='Tidak Lulus'");
+                            echo $sql2->num_rows; ?></h3>
 
-                        <p>Peserta Ditolak</p>
+                        <p>Peserta Tidak Lulus</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-user-times"></i>

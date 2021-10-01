@@ -1,7 +1,6 @@
 <?php
 
-$view = $_GET['aksi'];
-echo "<title>" . $view . "  Data Peserta Didik</title>";
+echo "<title>Laporan Data Peserta Didik</title>";
 // memanggil file header dan menu
 include "_header.php";
 include "_menu.php";
@@ -15,22 +14,37 @@ include "../koneksi.php";
             LAPORAN PESERTA DIDIK
         </h1>
     </section>
+    <section class="content">
+        <div class="card" style=" border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 7px; box-shadow: -3px 4px 2px rgba(0, 0, 0, 0.3); padding-left: 15px; padding-right: 15px;">
+            <div class="card-header mb-5" style="margin-bottom: 40px;">
+                <h3>Laporan Data Peserta Didik</h3>
 
-    <?php if ($view == 'list' or $view == NULL) { ?>
-        <section class="content">
+                <form action="" method="get">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <select name="ta" id="" class="form-control">
+                                <option value="">-- Pilih Tahun Ajaran --</option>
+                                <?php $query = $koneksi->query("select * from tbl_tahunajaran");
+                                while ($data = $query->fetch_assoc()) { ?>
+                                    <option value="<?= $data['id_thnajaran'] ?>"><?= $data['tahunAjaran'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary">Tampilkan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-            <div class="card" style=" border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 7px; box-shadow: -3px 4px 2px rgba(0, 0, 0, 0.3); padding-left: 15px; padding-right: 15px;">
-
-                <div class="card-header mb-5" style="margin-bottom: 40px;">
-                    <h3>Laporan Data Peserta</h3>
-                     <a href="cetak_laporan.php">
-                        <button type="button" class="btn btn-primary">
+            <?php if (isset($_GET['ta'])) { ?>
+                <div class="card-body">
+                    <a href="cetak_laporan.php">
+                        <button type="button" class="btn btn-primary mb-3">
                             Cetak Laporan
                         </button>
-                    </a>
-                </div>
+                    </a><br><br>
 
-                <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover dashboard-task-infos">
                             <thead>
@@ -42,14 +56,15 @@ include "../koneksi.php";
                                     <th>Alamat</th>
                                     <th>Asala Sekolah</th>
                                     <th>No Telpon</th>
-                                    
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
 
                                 $no = 1;
-                                $sql = $koneksi->query("select * from tbl_peserta Where status_pendaftaran='diterima'");
+                                $idta = $_GET['ta'];
+                                $sql = $koneksi->query("select * from tbl_peserta Where id_thnajaran ='$idta' and status='Lulus'");
                                 while ($data = $sql->fetch_assoc()) {
                                     # code...
                                 ?>
@@ -61,7 +76,7 @@ include "../koneksi.php";
                                         <td><?= $data['alamat'] ?></td>
                                         <td><?= $data['asal_sekolah'] ?></td>
                                         <td><?= $data['no_hp'] ?> </i></td>
-                                        
+
                                     </tr>
                                 <?php $no++;
                                 } ?>
@@ -69,11 +84,12 @@ include "../koneksi.php";
                         </table>
                     </div>
                 </div>
-            </div>
-        </section>
 
-    
-    <?php } ?>
+            <?php } ?>
+
+
+        </div>
+    </section>
 </div>
 
 

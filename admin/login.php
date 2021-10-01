@@ -56,7 +56,6 @@
                     $akun = $sql->fetch_assoc();
                     $_SESSION['admin'] = $akun;
 
-                    echo "<script>alert('login berhasil !')</script>";
                     echo "<script>location='index.php'</script>";
                 } else {
                     echo "<script>alert('login gagal !')</script>";
