@@ -22,7 +22,7 @@ include "../koneksi.php";
                 <form action="" method="get">
                     <div class="row">
                         <div class="col-md-10">
-                            <select name="ta" id="" class="form-control">
+                            <select name="ta" id="" class="form-control" required>
                                 <option value="">-- Pilih Tahun Ajaran --</option>
                                 <?php $query = $koneksi->query("select * from tbl_tahunajaran");
                                 while ($data = $query->fetch_assoc()) { ?>

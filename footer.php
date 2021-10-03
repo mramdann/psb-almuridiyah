@@ -9,7 +9,7 @@
                         Copyright &copy;<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="" target="_blank">Almuridiyah</a>
+                        </script> All rights reserved Almuridiyah By Fatwa
 
                     </p>
                 </div>

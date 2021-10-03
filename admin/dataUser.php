@@ -12,7 +12,7 @@ include "../koneksi.php";
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            DATA PESERTA DIDIK
+            DATA USER
         </h1>
 
     </section>

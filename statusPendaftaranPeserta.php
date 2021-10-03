@@ -193,7 +193,7 @@ while ($data = $sql->fetch_assoc()) {
                         </div>
                         <div class="col-md-6">
                             <div class="card-body">
-                                <h5 class="card-title <?= $data['color'] ?>"><?= $data['status'] ?><i class="material-icons"><?= $data['icon'] ?></i></h5>
+                                <h5 class="card-title"> Status : <?= $data['status'] ?></h5>
 
                                 <table class="table table-hover dashboard-task-infos">
                                     <tr>
@@ -311,11 +311,13 @@ while ($data = $sql->fetch_assoc()) {
                             KEMBALI
                         </button>
                     </a>
-                    <a href="print.php?id=<?= $data['id_peserta'] ?>" target="_blank">
+                    <?php if ($data['status'] == 'Lulus') {
+                            echo '<a href="print.php?id=' . $data['id_peserta'] . '" target="_blank">
                         <button type="button" class="btn btn-primary">
                             CETAK
                         </button>
-                    </a>
+                    </a>';
+                        } ?>
                 </div>
             </div>
         <?php
