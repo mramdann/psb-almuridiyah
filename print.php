@@ -38,7 +38,7 @@ include "koneksi.php";
 
                     </div>
                 </div>
-                <h2>Pendaftaran Peserta Didik Baru</h2>
+                <h2>Bukti Pendaftaran Peserta Didik Baru</h2>
                 <div class="card mb-3">
 
                     <div class="row no-gutters">
